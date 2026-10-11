@@ -1,59 +1,127 @@
 {% extends "base.html" %}
 {% load static i18n shop_tags %}
-{% block title %}{% trans "Products" %} · GMM{% endblock %}
-{% block content %}
-<div class="hero"><img src="{% static 'images/hero-1.webp' %}" alt="GMM"></div>
+{% block title %}GMM Distributors · {% trans "Our Products" %}{% endblock %}
+{% block bodyclass %}home{% endblock %}
+{% block mainclass %}home-main{% endblock %}
 
-{% if not user.is_authenticated %}
-<a class="btn block wheat big" href="{% url 'shop:login' %}" style="margin-top:0">🔑 {% trans "Login / Register" %}</a>
-{% endif %}
-
-<div class="steps">
-  <div><span>👆</span><b>{% trans "1. Choose" %}</b></div>
-  <div><span>🛒</span><b>{% trans "2. Order" %}</b></div>
-  <div><span>🚚</span><b>{% trans "3. Delivery to your home" %}</b></div>
-</div>
-
-<div class="help">
-  {% if site.support_phone %}<a class="help-btn call" href="tel:{{ site.support_phone }}"><span>📞</span>{% trans "Call us" %}</a>{% endif %}
-  {% if site.whatsapp_number %}<a class="help-btn wa" href="https://wa.me/{{ site.whatsapp_number|digits }}"><span>💬</span>WhatsApp</a>{% endif %}
-  <a class="help-btn" href="{% url 'shop:orders' %}"><span>📦</span>{% trans "My orders" %}</a>
-</div>
-
-<h1>{% trans "Our Products" %}</h1>
-
-{% for p in products %}
-<div class="card pcard">
-  {% with img=p|photo %}
-    {% if img %}<div class="pic"><img src="{{ img }}" alt="{{ p.name }}" loading="lazy"></div>
-    {% else %}<div class="pic none">🌱</div>{% endif %}
-  {% endwith %}
-  <div class="body">
-    <h2 class="pname">{{ p|lname:LANGUAGE_CODE }}</h2>
-    {% with d=p|ldesc:LANGUAGE_CODE %}{% if d %}<p class="muted" style="margin:6px 0 0">{{ d }}</p>{% endif %}{% endwith %}
-    {% for v in p.packs %}
-    <div class="pack">
-      <div class="row">
-        <span class="packname">{{ v.label }}</span>
-        <span class="bigprice">₹{{ v.price|floatformat:"-2" }}</span>
+{% block hero %}
+<section class="hero2" aria-labelledby="h-title">
+  <div class="sunwrap" aria-hidden="true"><div class="rays"></div><div class="glow"></div><div class="sun"></div></div>
+  <div class="bubbles" aria-hidden="true"><span style="--x:6%;--s:14px;--t:11s;--d:-1s"></span><span style="--x:14%;--s:22px;--t:14s;--d:-6s"></span><span style="--x:22%;--s:10px;--t:9s;--d:-3s"></span><span class="g" style="--x:31%;--s:18px;--t:16s;--d:-9s"></span><span style="--x:40%;--s:26px;--t:18s;--d:-2s"></span><span style="--x:48%;--s:12px;--t:10s;--d:-7s"></span><span style="--x:56%;--s:20px;--t:13s;--d:-5s"></span><span class="g" style="--x:64%;--s:16px;--t:12s;--d:-8s"></span><span style="--x:72%;--s:28px;--t:17s;--d:-4s"></span><span style="--x:80%;--s:11px;--t:9s;--d:-6s"></span><span style="--x:88%;--s:19px;--t:15s;--d:-10s"></span><span class="g" style="--x:94%;--s:13px;--t:11s;--d:-3s"></span><span style="--x:36%;--s:9px;--t:8s;--d:-5s"></span><span style="--x:68%;--s:15px;--t:12s;--d:-9s"></span></div>
+  <svg class="hills" viewBox="0 0 800 160" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#2E7A44" d="M0 70C120 30 220 90 340 60S600 20 800 62V160H0Z"/>
+    <path fill="#1B5A34" d="M0 100C140 70 260 120 400 96S650 70 800 104V160H0Z"/>
+    <path fill="#F5F7F2" d="M0 142C200 124 600 152 800 130V160H0Z"/>
+  </svg>
+  <svg class="sprouts" viewBox="0 0 800 70" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs><g id="spr" stroke-linecap="round"><path d="M0 0V-34" stroke="#8EE07A" stroke-width="3" fill="none"/><path fill="#8EE07A" d="M0-20C-14-24-18-36-16-40-6-38 0-30 0-20Z"/><path fill="#A9F08F" d="M0-30C14-34 18-46 16-50 6-48 0-40 0-30Z"/></g></defs>
+    <g transform="translate(70 70)"><g class="sp" style="--d:1.1s"><use href="#spr"/></g></g>
+    <g transform="translate(190 70)"><g class="sp" style="--d:1.25s"><use href="#spr"/></g></g>
+    <g transform="translate(300 70)"><g class="sp" style="--d:1.4s"><use href="#spr"/></g></g>
+    <g transform="translate(500 70)"><g class="sp" style="--d:1.35s"><use href="#spr"/></g></g>
+    <g transform="translate(610 70)"><g class="sp" style="--d:1.2s"><use href="#spr"/></g></g>
+    <g transform="translate(730 70)"><g class="sp" style="--d:1.05s"><use href="#spr"/></g></g>
+  </svg>
+  <div class="hero2-in container">
+    <div class="hero2-copy">
+      <h1 id="h-title">{% trans "Organic farming, a promise of good health" %}</h1>
+      <p class="lead">{% trans "Soil boosters and farm inputs from GMM Distributors, delivered to your door." %}</p>
+      <div class="cta">
+        <a class="btn sun big" href="#products">{% trans "Shop now" %}</a>
+        {% if site.whatsapp_number %}<a class="btn ghost big" href="https://wa.me/{{ site.whatsapp_number|digits }}"><svg class="ic"><use href="#i-chat"/></svg>WhatsApp</a>{% endif %}
       </div>
-      {% if v.in_stock %}
-      <form method="post" action="{% url 'shop:cart_add' %}" class="buyrow">{% csrf_token %}
-        <input type="hidden" name="variant_id" value="{{ v.pk }}">
-        <div class="qty"><button type="button" data-step="-1" aria-label="-">−</button>
-          <input class="q" type="number" name="qty" value="1" min="1" max="{{ v.stock }}" inputmode="numeric" aria-label="{% trans 'Quantity' %}">
-          <button type="button" data-step="1" aria-label="+">+</button></div>
-        <button class="btn" type="submit">🛒 {% trans "Add to Cart" %}</button>
-      </form>
-      {% else %}<div class="soldout">{% trans "Out of stock" %}</div>{% endif %}
     </div>
-    {% endfor %}
+    <div class="hero2-art" aria-hidden="true">
+      <div class="pod">
+        {% for p in products|slice:":3" %}{% with img=p|photo %}{% if img %}<img src="{{ img }}" alt="" width="128" height="128" {% if forloop.first %}fetchpriority="high"{% endif %}>{% endif %}{% endwith %}{% endfor %}
+      </div>
+    </div>
   </div>
-</div>
-{% empty %}
-<div class="card">{% trans "No products right now." %}</div>
-{% endfor %}
+</section>
 {% endblock %}
+
+{% block content %}
+<div class="container">
+  <ul class="trust">
+    {% if site.cod_enabled %}<li><span class="ico"><svg class="ic"><use href="#i-rupee"/></svg></span><div><b>{% trans "Pay on delivery" %}</b><span class="s">{% trans "Pay when the order reaches you" %}</span></div></li>{% endif %}
+    {% if site.free_delivery_above %}<li><span class="ico"><svg class="ic"><use href="#i-truck"/></svg></span><div><b>{% blocktrans with amt=site.free_delivery_above|floatformat:"-2" %}Free delivery above ₹{{ amt }}{% endblocktrans %}</b><span class="s">{% trans "To your PIN code" %}</span></div></li>
+    {% else %}<li><span class="ico"><svg class="ic"><use href="#i-truck"/></svg></span><div><b>{% trans "Home delivery" %}</b><span class="s">{% trans "To your PIN code" %}</span></div></li>{% endif %}
+    <li><span class="ico"><svg class="ic"><use href="#i-file"/></svg></span><div><b>{% trans "GST invoice" %}</b><span class="s">{% trans "A proper tax bill for your order" %}</span></div></li>
+    <li><span class="ico"><svg class="ic"><use href="#i-phone"/></svg></span><div><b>{% trans "Help by phone" %}</b><span class="s">{% trans "Call or WhatsApp us" %}</span></div></li>
+  </ul>
+
+  <section class="sec" id="products">
+    <h2>{% trans "Our Products" %}</h2>
+    <p class="sub">{% trans "Choose a pack size, then add it to your cart." %}</p>
+    <div class="pgrid">
+    {% for p in products %}
+      <article class="pc">
+        <div class="pc-media">
+          {% if p.is_featured %}<span class="tag">{% trans "Featured" %}</span>{% endif %}
+          {% with img=p|photo %}{% if img %}<img src="{{ img }}" alt="{{ p.name }}" loading="lazy" width="260" height="260">{% else %}<span class="none">🌱</span>{% endif %}{% endwith %}
+        </div>
+        <div class="pc-body">
+          <h3>{{ p|lname:LANGUAGE_CODE }}</h3>
+          {% with d=p|ldesc:LANGUAGE_CODE %}{% if d %}<p class="d">{{ d }}</p>{% endif %}{% endwith %}
+          {% if p.default_pack %}
+          <form method="post" action="{% url 'shop:cart_add' %}" class="pc-form" data-add>{% csrf_token %}
+            <fieldset class="packs"><legend>{% trans "Choose pack size" %}</legend>
+              {% for v in p.packs %}
+              <label class="pack-opt{% if not v.in_stock %} off{% endif %}">
+                <input type="radio" name="variant_id" value="{{ v.pk }}" data-stock="{{ v.stock }}"{% if v.pk == p.default_pack.pk %} checked{% endif %}{% if not v.in_stock %} disabled{% endif %}>
+                <span><span class="pl">{{ v.label }}</span><span class="pp">₹{{ v.price|floatformat:"-2" }}</span></span>
+              </label>
+              {% endfor %}
+            </fieldset>
+            <p class="gst">{% trans "Prices include GST" %}</p>
+            <div class="buyrow">
+              <div class="qty"><button type="button" data-step="-1" aria-label="-">−</button>
+                <input class="q" type="number" name="qty" value="1" min="1" max="{{ p.default_pack.stock }}" inputmode="numeric" aria-label="{% trans 'Quantity' %}">
+                <button type="button" data-step="1" aria-label="+">+</button></div>
+              <button class="btn" type="submit"><svg class="ic"><use href="#i-cart"/></svg>{% trans "Add to Cart" %}</button>
+            </div>
+          </form>
+          {% else %}<div class="soldout">{% trans "Out of stock" %}</div>{% endif %}
+        </div>
+      </article>
+    {% empty %}
+      <div class="card">{% trans "No products right now." %}</div>
+    {% endfor %}
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>{% trans "How ordering works" %}</h2>
+    <ol class="how">
+      <li><span class="n">1</span><div><b>{% trans "Choose your pack" %}</b></div></li>
+      <li><span class="n">2</span><div><b>{% trans "Place your order" %}</b></div></li>
+      <li><span class="n">3</span><div><b>{% trans "Get it at your door" %}</b></div></li>
+    </ol>
+  </section>
+
+  {% if site.support_phone or site.whatsapp_number %}
+  <section class="sec">
+    <div class="helpcard">
+      <div class="bubbles" aria-hidden="true"><span style="--x:8%;--s:12px;--t:9s;--d:-1s"></span><span style="--x:25%;--s:20px;--t:12s;--d:-5s"></span><span style="--x:45%;--s:10px;--t:8s;--d:-3s"></span><span class="g" style="--x:62%;--s:24px;--t:14s;--d:-7s"></span><span style="--x:80%;--s:14px;--t:10s;--d:-2s"></span><span style="--x:92%;--s:18px;--t:13s;--d:-6s"></span></div>
+      <div><h2>{% trans "Not sure what to choose?" %}</h2><p>{% trans "Talk to us. We are happy to help." %}</p></div>
+      <div class="acts">
+        {% if site.support_phone %}<a class="btn sun" href="tel:{{ site.support_phone }}"><svg class="ic"><use href="#i-phone"/></svg>{% trans "Call us" %}</a>{% endif %}
+        {% if site.whatsapp_number %}<a class="btn wa" href="https://wa.me/{{ site.whatsapp_number|digits }}"><svg class="ic"><use href="#i-chat"/></svg>WhatsApp</a>{% endif %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <footer class="foot">
+    <img src="{% static 'images/logo.jpg' %}" alt="" width="48" height="48">
+    <div><b>GMM Distributors Pvt. Ltd.</b></div>
+    <div>{% trans "Organic farming, healthy living" %}</div>
+    {% if site.gstin %}<div>GSTIN: {{ site.gstin }}</div>{% endif %}
+    <div>© {% now "Y" %}</div>
+  </footer>
+</div>
+{% endblock %}
+
 {% block cartbar %}
-{% if cart_count %}<a class="cartbar" href="{% url 'shop:cart' %}"><span>🛒 {% blocktrans with n=cart_count %}{{ n }} items{% endblocktrans %}</span><span>{% trans "View cart" %} · ₹{{ cart_total|floatformat:"-2" }} →</span></a>{% endif %}
+{% if cart_count %}<a class="cartbar" href="{% url 'shop:cart' %}"><span>{% blocktrans with n=cart_count %}{{ n }} items{% endblocktrans %}</span><span>{% trans "View cart" %} · ₹{{ cart_total|floatformat:"-2" }}</span></a>{% endif %}
 {% endblock %}

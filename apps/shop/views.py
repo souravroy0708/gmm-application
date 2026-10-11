@@ -46,6 +46,7 @@ def products(request):
     )
     for p in items:
         p.packs = [v for v in p.variants.all() if v.is_active]
+        p.default_pack = next((v for v in p.packs if v.in_stock), None)
     return render(request, "shop/products.html", {"products": [p for p in items if p.packs]})
 
 

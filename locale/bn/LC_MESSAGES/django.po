@@ -377,3 +377,69 @@ msgstr "পেমেন্ট নিশ্চিত"
 
 msgid "Proof rejected"
 msgstr "তথ্য গ্রহণ হয়নি"
+
+msgid "Organic farming, a promise of good health"
+msgstr "জৈব চাষ, সুস্থতার আশ্বাস"
+
+msgid "Soil boosters and farm inputs from GMM Distributors, delivered to your door."
+msgstr "জিএমএম ডিস্ট্রিবিউটর্সের মাটির পুষ্টি ও কৃষি সামগ্রী, পৌঁছে যাবে আপনার দরজায়।"
+
+msgid "Shop now"
+msgstr "এখনই কিনুন"
+
+msgid "Pay on delivery"
+msgstr "ডেলিভারির সময় পেমেন্ট"
+
+msgid "Pay when the order reaches you"
+msgstr "অর্ডার হাতে পেয়ে টাকা দিন"
+
+msgid "Free delivery above ₹%(amt)s"
+msgstr "₹%(amt)s-এর বেশি অর্ডারে ডেলিভারি ফ্রি"
+
+msgid "To your PIN code"
+msgstr "আপনার পিন কোডে"
+
+msgid "Home delivery"
+msgstr "বাড়ি পর্যন্ত ডেলিভারি"
+
+msgid "GST invoice"
+msgstr "জিএসটি ইনভয়েস"
+
+msgid "A proper tax bill for your order"
+msgstr "আপনার অর্ডারের কর বিল"
+
+msgid "Help by phone"
+msgstr "ফোনে সাহায্য"
+
+msgid "Call or WhatsApp us"
+msgstr "কল বা হোয়াটসঅ্যাপ করুন"
+
+msgid "Choose a pack size, then add it to your cart."
+msgstr "প্যাকের সাইজ বেছে কার্টে যোগ করুন।"
+
+msgid "Featured"
+msgstr "বিশেষ পণ্য"
+
+msgid "Choose pack size"
+msgstr "প্যাকের সাইজ বেছে নিন"
+
+msgid "Prices include GST"
+msgstr "দাম জিএসটি সহ"
+
+msgid "How ordering works"
+msgstr "অর্ডার করবেন যেভাবে"
+
+msgid "Choose your pack"
+msgstr "প্যাক বেছে নিন"
+
+msgid "Place your order"
+msgstr "অর্ডার করুন"
+
+msgid "Get it at your door"
+msgstr "দরজায় পৌঁছে যাবে"
+
+msgid "Not sure what to choose?"
+msgstr "কোন পণ্য নেবেন বুঝতে পারছেন না?"
+
+msgid "Talk to us. We are happy to help."
+msgstr "আমাদের সঙ্গে কথা বলুন, আমরা সাহায্য করব।"

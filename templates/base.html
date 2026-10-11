@@ -3,14 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#2B3A24">
+  <meta name="theme-color" content="#0F2F1E">
   <title>{% block title %}GMM Distributors{% endblock %}</title>
   <link rel="icon" href="{% static 'images/logo.jpg' %}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@700;800&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@500;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/app.css' %}">
+  <link rel="stylesheet" href="{% static 'css/premium.css' %}">
 </head>
-<body>
+<body class="{% block bodyclass %}{% endblock %}">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="m7.5 4.3 9 5.2"/><path d="M21 8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.7Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.7a1 1 0 0 0-.2-.6l-3.5-4.4A1 1 0 0 0 17.5 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+  <symbol id="i-rupee" viewBox="0 0 24 24"><path d="M6 3h12"/><path d="M6 8h12"/><path d="m6 13 8.5 8"/><path d="M6 13h3"/><path d="M9 13c6.7 0 6.7-10 0-10"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+</defs></svg>
+
 <header class="top">
   <div class="wrap">
     <a class="brand" href="{% url 'shop:products' %}">
@@ -22,11 +36,13 @@
       {% if LANGUAGE_CODE == "bn" %}<button class="langbtn" name="language" value="en" type="submit">English</button>
       {% else %}<button class="langbtn" name="language" value="bn" type="submit">বাংলা</button>{% endif %}
     </form>
-    {% if site.support_phone %}<a class="callbtn" href="tel:{{ site.support_phone }}">📞 {% trans "Call" %}</a>{% endif %}
+    {% if site.support_phone %}<a class="callbtn" href="tel:{{ site.support_phone }}"><svg class="ic"><use href="#i-phone"/></svg>{% trans "Call" %}</a>{% endif %}
   </div>
 </header>
 
-<main class="wrap">
+{% block hero %}{% endblock %}
+
+<main class="{% block mainclass %}wrap{% endblock %}">
   {% for m in messages %}<div class="msg {{ m.tags }}">{{ m }}</div>{% endfor %}
   {% block content %}{% endblock %}
 </main>
@@ -35,17 +51,18 @@
 
 {% with name=request.resolver_match.url_name %}
 <nav class="tabs" aria-label="Menu">
-  <a href="{% url 'shop:products' %}" class="{% if name == 'products' %}on{% endif %}"><span>🌾</span>{% trans "Shop" %}</a>
-  <a href="{% url 'shop:cart' %}" class="{% if name == 'cart' or name == 'checkout' %}on{% endif %}"><span>🛒</span>{% trans "Cart" %}
+  <a href="{% url 'shop:products' %}" class="{% if name == 'products' %}on{% endif %}"><svg class="ic"><use href="#i-bag"/></svg>{% trans "Shop" %}</a>
+  <a href="{% url 'shop:cart' %}" class="{% if name == 'cart' or name == 'checkout' %}on{% endif %}"><svg class="ic"><use href="#i-cart"/></svg>{% trans "Cart" %}
     {% if cart_count %}<b class="badge">{{ cart_count }}</b>{% endif %}</a>
-  <a href="{% url 'shop:orders' %}" class="{% if name == 'orders' or name == 'order_detail' or name == 'invoice' %}on{% endif %}"><span>📦</span>{% trans "Orders" %}</a>
+  <a href="{% url 'shop:orders' %}" class="{% if name == 'orders' or name == 'order_detail' or name == 'invoice' %}on{% endif %}"><svg class="ic"><use href="#i-box"/></svg>{% trans "Orders" %}</a>
   {% if user.is_authenticated %}
-  <a href="{% url 'shop:addresses' %}" class="{% if 'address' in name %}on{% endif %}"><span>👤</span>{% trans "Account" %}</a>
+  <a href="{% url 'shop:addresses' %}" class="{% if 'address' in name %}on{% endif %}"><svg class="ic"><use href="#i-user"/></svg>{% trans "Account" %}</a>
   {% else %}
-  <a href="{% url 'shop:login' %}" class="{% if name == 'login' or name == 'register' %}on{% endif %}"><span>👤</span>{% trans "Login" %}</a>
+  <a href="{% url 'shop:login' %}" class="{% if name == 'login' or name == 'register' %}on{% endif %}"><svg class="ic"><use href="#i-user"/></svg>{% trans "Login" %}</a>
   {% endif %}
 </nav>
 {% endwith %}
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script src="{% static 'js/app.js' %}" defer></script>
 </body>
 </html>
