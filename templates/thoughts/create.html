@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %}{% if LANGUAGE_CODE == "bn" %}ভাবনা কার্ড{% else %}Thought card{% endif %} | GMM{% endblock %}
+{% block head_extra %}<link rel="stylesheet" href="{% static 'css/thoughts.css' %}">{% endblock %}
+{% block content %}
+{% with bn=LANGUAGE_CODE %}
+<div class="th" id="thApp"
+     data-logo="{% static 'images/logo.jpg' %}" data-site="{{ site_host }}"
+     data-brand="GMM Distributors" data-tag="{% trans 'Organic farming, healthy living' %}"
+     data-m-saved="{% if bn == 'bn' %}✓ ছবি সেভ হয়েছে{% else %}✓ Image saved{% endif %}"
+     data-m-copied="{% if bn == 'bn' %}✓ ক্যাপশন কপি হয়েছে{% else %}✓ Caption copied{% endif %}"
+     data-m-fail="{% if bn == 'bn' %}কিছু একটা ভুল হয়েছে, আবার চেষ্টা করুন{% else %}Something went wrong, please try again{% endif %}"
+     data-sample="{% if bn == 'bn' %}মাটির যত্ন নিলে মাটিও আমাদের যত্ন নেয়।{% else %}Take care of the soil, and the soil takes care of us.{% endif %}">
+
+  <header class="th-head">
+    <h1>{% if bn == "bn" %}আপনার ভাবনা, GMM-এর কার্ডে{% else %}Your thought, on a GMM card{% endif %}</h1>
+    <p>{% if bn == "bn" %}একটি ছোট ভাবনা লিখুন বা পেস্ট করুন, টেমপ্লেট বেছে নিন — লোগো-সহ কার্ড তৈরি। ডাউনলোড করে সোশ্যাল মিডিয়ায় শেয়ার করুন।{% else %}Write or paste a short thought, pick a template, and get a card with the GMM logo. Download it and share on social media.{% endif %}</p>
+  </header>
+
+  <div class="th-grid">
+    <section class="th-form" aria-label="{% if bn == 'bn' %}কার্ডের তথ্য{% else %}Card details{% endif %}">
+      <label class="th-lab" for="thText">{% if bn == "bn" %}আপনার ভাবনা{% else %}Your thought{% endif %}</label>
+      <textarea id="thText" rows="5" maxlength="{{ max_chars }}" placeholder="{% if bn == 'bn' %}এখানে লিখুন বা পেস্ট করুন…{% else %}Type or paste here…{% endif %}"></textarea>
+      <div class="th-count"><span id="thCount">0</span>/{{ max_chars }}</div>
+
+      <div class="th-two">
+        <div>
+          <label class="th-lab" for="thName">{% if bn == "bn" %}আপনার নাম{% else %}Your name{% endif %}</label>
+          <input type="text" id="thName" maxlength="40" value="{{ default_name }}" autocomplete="name">
+        </div>
+        <div>
+          <label class="th-lab" for="thRole">{% if bn == "bn" %}পদ (ঐচ্ছিক){% else %}Role (optional){% endif %}</label>
+          <input type="text" id="thRole" maxlength="40" placeholder="{% if bn == 'bn' %}যেমন: সেলস এক্সিকিউটিভ{% else %}e.g. Sales Executive{% endif %}">
+        </div>
+      </div>
+
+      <div class="th-lab" id="thTplLab">{% if bn == "bn" %}টেমপ্লেট{% else %}Template{% endif %}</div>
+      <div class="th-chips" role="group" aria-labelledby="thTplLab" id="thThemes">
+        <button type="button" class="th-chip" data-theme="leaf" aria-pressed="true"><i style="background:linear-gradient(135deg,#0F2F1E,#1F6B3A)"></i>{% if bn == "bn" %}সবুজ{% else %}Green{% endif %}</button>
+        <button type="button" class="th-chip" data-theme="harvest" aria-pressed="false"><i style="background:linear-gradient(135deg,#F7CE2B,#E3A800)"></i>{% if bn == "bn" %}সোনালি{% else %}Golden{% endif %}</button>
+        <button type="button" class="th-chip" data-theme="paper" aria-pressed="false"><i style="background:linear-gradient(135deg,#FFFFFF,#E7E2CE);border:1px solid #cfc9b3"></i>{% if bn == "bn" %}সাদা{% else %}Clean{% endif %}</button>
+        <button type="button" class="th-chip" data-theme="earth" aria-pressed="false"><i style="background:linear-gradient(135deg,#6B4423,#3E2714)"></i>{% if bn == "bn" %}মাটি{% else %}Earth{% endif %}</button>
+      </div>
+
+      <div class="th-lab" id="thSizeLab">{% if bn == "bn" %}মাপ{% else %}Size{% endif %}</div>
+      <div class="th-chips" role="group" aria-labelledby="thSizeLab" id="thSizes">
+        <button type="button" class="th-chip" data-size="square" aria-pressed="true">{% if bn == "bn" %}স্কয়ার (পোস্ট){% else %}Square (post){% endif %}</button>
+        <button type="button" class="th-chip" data-size="story" aria-pressed="false">{% if bn == "bn" %}স্টোরি / স্ট্যাটাস{% else %}Story / Status{% endif %}</button>
+      </div>
+    </section>
+
+    <section class="th-out" aria-label="{% if bn == 'bn' %}কার্ডের প্রিভিউ{% else %}Card preview{% endif %}">
+      <div class="th-stage"><canvas id="thCanvas" width="1080" height="1080" role="img" aria-label="{% if bn == 'bn' %}ভাবনা কার্ডের প্রিভিউ{% else %}Thought card preview{% endif %}"></canvas></div>
+      <div class="th-act">
+        <button type="button" class="th-btn main" id="thDownload" disabled>⬇ {% if bn == "bn" %}ছবি ডাউনলোড{% else %}Download image{% endif %}</button>
+        <button type="button" class="th-btn wa" id="thShare" hidden disabled>📤 {% if bn == "bn" %}শেয়ার করুন{% else %}Share{% endif %}</button>
+        <button type="button" class="th-btn line" id="thCaption" disabled>📋 {% if bn == "bn" %}ক্যাপশন কপি{% else %}Copy caption{% endif %}</button>
+      </div>
+      <p class="th-note" id="thNote" role="status" aria-live="polite"></p>
+      <p class="th-hint">{% if bn == "bn" %}টিপ: ছবি ডাউনলোড করে WhatsApp / Facebook / Instagram-এ পোস্ট করুন এবং ক্যাপশন পেস্ট করুন।{% else %}Tip: download the image, post it on WhatsApp / Facebook / Instagram and paste the caption.{% endif %}</p>
+    </section>
+  </div>
+</div>
+{% endwith %}
+<script src="{% static 'js/thoughts.js' %}" defer></script>
+{% endblock %}

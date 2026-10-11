@@ -1,11 +1,12 @@
 {% load static %}/* GMM service worker. Pages are always fetched from the network (orders, cart and
    invoices are private and must never be served from a stale cache). Only static
    assets and public product photos are cached. */
-const VERSION = "gmm-v1";
+const VERSION = "gmm-v2";
 const OFFLINE = "{% url 'pages:offline' %}";
 const CORE = [OFFLINE,
-  "{% static 'css/app.css' %}", "{% static 'css/premium.css' %}",
+  "{% static 'css/app.css' %}", "{% static 'css/premium.css' %}?v=2",
   "{% static 'css/pages.css' %}", "{% static 'css/theme.css' %}",
+  "{% static 'css/install.css' %}?v=2", "{% static 'js/install.js' %}?v=2",
   "{% static 'images/logo.jpg' %}", "{% static 'pwa/icon-192.png' %}"];
 
 self.addEventListener("install", function (e) {
