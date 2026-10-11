@@ -4,7 +4,7 @@
    - Public pages (home, shop list, advisory, contact...) open instantly from the saved copy and
      refresh quietly in the background when the network allows.
    - Private pages (cart, checkout, orders, invoices, login, admin) are NEVER cached. */
-const VERSION = "gmm-v4";
+const VERSION = "gmm-v4-{{ sw_version }}";
 const FONT_CSS = "{% static 'css/fonts.css' %}";
 const OFFLINE = "{% url 'pages:offline' %}";
 const THOUGHTS = "{% url 'thoughts:create' %}";

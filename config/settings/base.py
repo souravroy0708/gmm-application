@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "django.middleware.gzip.GZipMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -176,3 +177,6 @@ UNFOLD = {
         ],
     },
 }
+
+# Bump to force every phone to drop its saved service-worker cache.
+DEPLOY_VERSION = "1"
