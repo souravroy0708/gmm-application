@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "My Account" %} · GMM{% endblock %}
+{% block content %}
+<div class="card"><div class="row"><div><b>{{ user.name }}</b><div class="muted">{{ user.phone }}</div></div>
+  <form method="post" action="{% url 'shop:logout' %}">{% csrf_token %}<button class="btn small light" type="submit">{% trans "Logout" %}</button></form></div></div>
+<h1>{% trans "My Addresses" %}</h1>
+{% for a in addresses %}
+<div class="card">
+  <div class="row"><b>{{ a.full_name }}</b>{% if a.is_default %}<span class="status">{% trans "Main address" %}</span>{% endif %}</div>
+  <div>{{ a.phone }}</div>
+  <div class="muted">{{ a.line1 }}, {{ a.village_town }}{% if a.post_office %}, {% trans "P.O." %} {{ a.post_office }}{% endif %},
+    {{ a.district }}, {{ a.state }} – {{ a.pincode }}{% if a.landmark %}<br>{% trans "Landmark" %}: {{ a.landmark }}{% endif %}</div>
+  <div class="actions">
+    <a class="btn small light" href="{% url 'shop:address_edit' a.pk %}">{% trans "Edit" %}</a>
+    {% if not a.is_default %}
+    <form method="post" action="{% url 'shop:address_default' a.pk %}" class="inline">{% csrf_token %}
+      <button class="btn small light" type="submit">{% trans "Make main" %}</button></form>
+    {% endif %}
+    <form method="post" action="{% url 'shop:address_delete' a.pk %}" class="inline"
+          onsubmit="return confirm('{% trans "Remove this address?" %}')">{% csrf_token %}
+      <button class="btn small danger" type="submit">{% trans "Remove" %}</button></form>
+  </div>
+</div>
+{% empty %}
+<div class="card">{% trans "You have no saved address yet." %}</div>
+{% endfor %}
+<a class="btn block" href="{% url 'shop:address_new' %}">+ {% trans "Add new address" %}</a>
+{% endblock %}

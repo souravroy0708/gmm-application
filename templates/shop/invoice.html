@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Invoice {{ inv.invoice_no }}{% endblock %}
+{% block content %}
+<div class="noprint row" style="margin-bottom:10px">
+  <a href="{% url 'shop:order_detail' order.order_no %}">← Back</a>
+  <button class="btn small" onclick="window.print()">Print / Save as PDF</button>
+</div>
+<div class="card">
+  <h1 style="text-align:center">TAX INVOICE</h1>
+  <div class="row" style="align-items:flex-start">
+    <div><b>{{ seller.name }}</b><br>{{ seller.address|linebreaksbr }}
+      {% if seller.gstin %}<br>GSTIN: {{ seller.gstin }}{% endif %}</div>
+    <div style="text-align:right">No: <b>{{ inv.invoice_no }}</b><br>Date: {{ inv.issued_at|date:"d M Y" }}<br>
+      Order: {{ order.order_no }}</div>
+  </div>
+  <hr>
+  {% with a=order.address_snapshot %}
+  <div><b>Bill to:</b> {{ a.full_name }}, {{ a.phone }}<br>
+    {{ a.line1 }}, {{ a.village_town }}, {{ a.district }}, {{ a.state }} – {{ a.pincode }}</div>
+  {% endwith %}
+  <table style="margin-top:12px">
+    <tr><th>Item</th><th>HSN</th><th class="num">Qty</th><th class="num">Rate</th><th class="num">GST%</th><th class="num">Amount</th></tr>
+    {% for i in order.items.all %}
+    <tr><td>{{ i.product_name }} ({{ i.variant_label }})</td><td>{{ i.hsn_code }}</td>
+      <td class="num">{{ i.quantity }}</td><td class="num">{{ i.unit_price|floatformat:2 }}</td>
+      <td class="num">{{ i.gst_rate|floatformat:"-1" }}</td><td class="num">{{ i.line_total|floatformat:2 }}</td></tr>
+    {% endfor %}
+  </table>
+  <table style="margin-top:12px">
+    <tr><td>Taxable value</td><td class="num">₹{{ order.subtotal|floatformat:2 }} (incl. GST ₹{{ order.tax_total|floatformat:2 }})</td></tr>
+    {% if inv.is_interstate %}
+      <tr><td>IGST</td><td class="num">₹{{ inv.igst|floatformat:2 }}</td></tr>
+    {% else %}
+      <tr><td>CGST</td><td class="num">₹{{ inv.cgst|floatformat:2 }}</td></tr>
+      <tr><td>SGST</td><td class="num">₹{{ inv.sgst|floatformat:2 }}</td></tr>
+    {% endif %}
+    <tr><td>Delivery</td><td class="num">₹{{ order.delivery_fee|floatformat:2 }}</td></tr>
+    <tr class="total"><td>Grand total</td><td class="num">₹{{ order.total|floatformat:2 }}</td></tr>
+  </table>
+  <p class="muted">Prices include GST. Payment: {{ order.get_payment_method_display }} ({{ order.get_payment_status_display }}).</p>
+</div>
+{% endblock %}

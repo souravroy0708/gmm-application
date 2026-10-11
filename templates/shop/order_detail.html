@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ order.order_no }} · GMM{% endblock %}
+{% block content %}
+<h1>{% trans "Order" %} {{ order.order_no }}</h1>
+
+<div class="card">
+  <div class="row"><span>{% trans "Status" %}</span><span class="status {{ order.status }}">{{ order.get_status_display }}</span></div>
+  <div class="row"><span>{% trans "Payment" %}</span><span>{{ order.get_payment_method_display }} · {{ order.get_payment_status_display }}</span></div>
+  <div class="muted">{% trans "Placed on" %} {{ order.created_at|date:"d M Y, h:i A" }}</div>
+</div>
+
+{% if show_pay_box %}
+<div class="card" style="border-color:var(--green)">
+  <h2>{% trans "Please pay" %} ₹{{ order.total|floatformat:"-2" }}</h2>
+  {% if order.payment_method == "UPI" %}
+    {% if cfg.upi_qr %}<img src="{{ cfg.upi_qr.url }}" alt="UPI QR" style="max-width:220px;width:100%">{% endif %}
+    {% if cfg.upi_id %}<p>{% trans "UPI ID" %}: <b>{{ cfg.upi_id }}</b></p>{% endif %}
+  {% else %}
+    <p>{% trans "Account name" %}: <b>{{ cfg.bank_account_name }}</b><br>{% trans "Bank" %}: <b>{{ cfg.bank_name }}</b><br>
+    {% trans "Account no" %}: <b>{{ cfg.bank_account_number }}</b><br>IFSC: <b>{{ cfg.bank_ifsc }}</b></p>
+  {% endif %}
+  {% if order.payment_status == "REJECTED" and last_payment.reject_reason %}
+    <div class="msg error">{% trans "Last payment was not accepted:" %} {{ last_payment.reject_reason }}</div>
+  {% endif %}
+  <p class="muted">{% trans "After paying, enter the reference number (UTR) below." %}</p>
+  <form method="post" action="{% url 'shop:order_pay' order.order_no %}" enctype="multipart/form-data" data-once>{% csrf_token %}
+    {{ proof_form.reference.label_tag }} {{ proof_form.reference }}
+    {{ proof_form.proof_image.label_tag }} {{ proof_form.proof_image }}
+    <button class="btn block" type="submit">✔ {% trans "I have paid" %}</button>
+  </form>
+</div>
+{% elif order.payment_status == "PROOF_SUBMITTED" %}
+<div class="msg">{% trans "We received your payment details and will confirm soon." %}</div>
+{% endif %}
+
+<div class="card">
+  <h2>{% trans "Items" %}</h2>
+  {% for i in order.items.all %}
+  <div class="row"><span>{{ i.quantity }} × {{ i.product_name }} ({{ i.variant_label }})</span>
+    <span>₹{{ i.line_total|floatformat:"-2" }}</span></div>
+  {% endfor %}
+  <hr>
+  <div class="row"><span>{% trans "Items total" %}</span><span>₹{{ order.subtotal|floatformat:"-2" }}</span></div>
+  <div class="row"><span>{% trans "Delivery" %}</span><span>₹{{ order.delivery_fee|floatformat:"-2" }}</span></div>
+  <div class="row total"><span>{% trans "Total" %}</span><span>₹{{ order.total|floatformat:"-2" }}</span></div>
+</div>
+
+<div class="card">
+  <h2>{% trans "Delivery address" %}</h2>
+  {% with a=order.address_snapshot %}
+  <div>{{ a.full_name }} · {{ a.phone }}<br>
+  <span class="muted">{{ a.line1 }}, {{ a.village_town }}, {{ a.district }}, {{ a.state }} – {{ a.pincode }}</span></div>
+  {% endwith %}
+</div>
+
+{% if can_invoice %}
+  <a class="btn block" href="{% url 'shop:invoice' order.order_no %}">🧾 {% trans "View / Print Invoice" %}</a>
+{% elif order.status != "CANCELLED" %}
+  <p class="muted">{% trans "Your invoice will be ready once we confirm the order." %}</p>
+{% endif %}
+
+{% if order.customer_can_cancel %}
+<form method="post" action="{% url 'shop:order_cancel' order.order_no %}" onsubmit="return confirm('{% trans "Cancel this order?" %}')">
+  {% csrf_token %}<button class="btn block danger" type="submit">{% trans "Cancel Order" %}</button>
+</form>
+{% endif %}
+<p><a href="{% url 'shop:orders' %}">← {% trans "All orders" %}</a></p>
+{% endblock %}

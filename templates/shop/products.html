@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static i18n shop_tags %}
+{% block title %}{% trans "Products" %} · GMM{% endblock %}
+{% block content %}
+<div class="hero"><img src="{% static 'images/hero-1.webp' %}" alt="GMM"></div>
+
+{% if not user.is_authenticated %}
+<a class="btn block wheat big" href="{% url 'shop:login' %}" style="margin-top:0">🔑 {% trans "Login / Register" %}</a>
+{% endif %}
+
+<div class="steps">
+  <div><span>👆</span><b>{% trans "1. Choose" %}</b></div>
+  <div><span>🛒</span><b>{% trans "2. Order" %}</b></div>
+  <div><span>🚚</span><b>{% trans "3. Delivery to your home" %}</b></div>
+</div>
+
+<div class="help">
+  {% if site.support_phone %}<a class="help-btn call" href="tel:{{ site.support_phone }}"><span>📞</span>{% trans "Call us" %}</a>{% endif %}
+  {% if site.whatsapp_number %}<a class="help-btn wa" href="https://wa.me/{{ site.whatsapp_number|digits }}"><span>💬</span>WhatsApp</a>{% endif %}
+  <a class="help-btn" href="{% url 'shop:orders' %}"><span>📦</span>{% trans "My orders" %}</a>
+</div>
+
+<h1>{% trans "Our Products" %}</h1>
+
+{% for p in products %}
+<div class="card pcard">
+  {% with img=p|photo %}
+    {% if img %}<div class="pic"><img src="{{ img }}" alt="{{ p.name }}" loading="lazy"></div>
+    {% else %}<div class="pic none">🌱</div>{% endif %}
+  {% endwith %}
+  <div class="body">
+    <h2 class="pname">{{ p|lname:LANGUAGE_CODE }}</h2>
+    {% with d=p|ldesc:LANGUAGE_CODE %}{% if d %}<p class="muted" style="margin:6px 0 0">{{ d }}</p>{% endif %}{% endwith %}
+    {% for v in p.packs %}
+    <div class="pack">
+      <div class="row">
+        <span class="packname">{{ v.label }}</span>
+        <span class="bigprice">₹{{ v.price|floatformat:"-2" }}</span>
+      </div>
+      {% if v.in_stock %}
+      <form method="post" action="{% url 'shop:cart_add' %}" class="buyrow">{% csrf_token %}
+        <input type="hidden" name="variant_id" value="{{ v.pk }}">
+        <div class="qty"><button type="button" data-step="-1" aria-label="-">−</button>
+          <input class="q" type="number" name="qty" value="1" min="1" max="{{ v.stock }}" inputmode="numeric" aria-label="{% trans 'Quantity' %}">
+          <button type="button" data-step="1" aria-label="+">+</button></div>
+        <button class="btn" type="submit">🛒 {% trans "Add to Cart" %}</button>
+      </form>
+      {% else %}<div class="soldout">{% trans "Out of stock" %}</div>{% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% empty %}
+<div class="card">{% trans "No products right now." %}</div>
+{% endfor %}
+{% endblock %}
+{% block cartbar %}
+{% if cart_count %}<a class="cartbar" href="{% url 'shop:cart' %}"><span>🛒 {% blocktrans with n=cart_count %}{{ n }} items{% endblocktrans %}</span><span>{% trans "View cart" %} · ₹{{ cart_total|floatformat:"-2" }} →</span></a>{% endif %}
+{% endblock %}

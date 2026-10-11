@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load i18n shop_tags %}
+{% block title %}{% trans "Checkout" %} · GMM{% endblock %}
+{% block content %}
+<h1>{% trans "Checkout" %}</h1>
+
+<div class="card">
+  <h2>{% trans "Your items" %}</h2>
+  {% for l in lines %}
+  <div class="row"><span>{{ l.qty }} × {{ l.variant.product|lname:LANGUAGE_CODE }} ({{ l.variant.label }})</span>
+    <span>₹{{ l.total|floatformat:"-2" }}</span></div>
+  {% endfor %}
+  <div class="row total" style="margin-top:8px"><span>{% trans "Items total" %}</span><span>₹{{ subtotal|floatformat:"-2" }}</span></div>
+</div>
+
+<form method="post" data-once>{% csrf_token %}
+  <input type="hidden" name="token" value="{{ token }}">
+  {{ form.non_field_errors }}
+
+  <div class="card">
+    <h2>{% trans "1. Delivery address" %}</h2>
+    {% for a in addresses %}
+    <label class="choice">
+      <input type="radio" name="address" value="{{ a.pk }}" {% if forloop.first %}checked{% endif %}>
+      <b>{{ a.full_name }}</b> · {{ a.phone }}<br>
+      <span class="muted">{{ a.line1 }}, {{ a.village_town }}, {{ a.district }} – {{ a.pincode }}<br>
+      {% if a.pin %}{% trans "Delivery" %}: {% if a.pin.delivery_fee %}₹{{ a.pin.delivery_fee }}{% else %}{% trans "Free" %}{% endif %}
+      {% else %}⚠ {% trans "We do not deliver to this PIN code yet" %}{% endif %}</span>
+    </label>
+    {% endfor %}
+    {{ form.address.errors }}
+    <a href="/addresses/new/?next=/checkout/">+ {% trans "Add new address" %}</a>
+  </div>
+
+  <div class="card">
+    <h2>{% trans "2. How will you pay?" %}</h2>
+    {% for value, label in form.fields.payment_method.choices %}
+    <label class="choice"><input type="radio" name="payment_method" value="{{ value }}" {% if forloop.first %}checked{% endif %}>
+      {{ label }}</label>
+    {% endfor %}
+    {{ form.payment_method.errors }}
+    <p class="muted">{% trans "For UPI or bank transfer, you will see our payment details after placing the order." %}</p>
+  </div>
+
+  <div class="card">
+    <label for="id_note" style="margin-top:0">{% trans "Note (optional)" %}</label>
+    {{ form.note }}
+  </div>
+
+  <button class="btn block wheat" type="submit">✔ {% trans "Place Order" %}</button>
+</form>
+{% endblock %}

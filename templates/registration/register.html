@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Create account" %} · GMM{% endblock %}
+{% block content %}
+<h1>{% trans "Create account" %}</h1>
+<form method="post" class="card" data-once>{% csrf_token %}
+  {% include "shop/_form.html" %}
+  <button class="btn block" type="submit">{% trans "Create account" %}</button>
+</form>
+<p>{% trans "Already have an account?" %} <a href="{% url 'shop:login' %}"><b>{% trans "Login" %}</b></a></p>
+{% endblock %}

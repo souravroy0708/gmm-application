@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %}{% trans "Login" %} · GMM{% endblock %}
+{% block content %}
+<div class="hero"><img src="{% static 'images/hero-2.webp' %}" alt=""></div>
+<h1>{% trans "Login" %}</h1>
+<form method="post" class="card" data-once>{% csrf_token %}
+  {% include "shop/_form.html" %}
+  <input type="hidden" name="next" value="{{ next }}">
+  <button class="btn block" type="submit">{% trans "Login" %}</button>
+</form>
+<p>{% trans "New here?" %} <a href="{% url 'shop:register' %}"><b>{% trans "Create an account" %}</b></a></p>
+{% endblock %}

@@ -1,0 +1,379 @@
+#
+msgid ""
+msgstr ""
+"Language: bn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Organic farming, healthy living"
+msgstr "জৈব চাষ, সুস্থ জীবন"
+
+msgid "Call"
+msgstr "ফোন"
+
+msgid "Shop"
+msgstr "দোকান"
+
+msgid "Cart"
+msgstr "কার্ট"
+
+msgid "Orders"
+msgstr "অর্ডার"
+
+msgid "Account"
+msgstr "আমার"
+
+msgid "Login"
+msgstr "লগইন"
+
+msgid "Products"
+msgstr "পণ্য"
+
+msgid "Login / Register"
+msgstr "লগইন / নতুন একাউন্ট"
+
+msgid "1. Choose"
+msgstr "১. পছন্দ করুন"
+
+msgid "2. Order"
+msgstr "২. অর্ডার দিন"
+
+msgid "3. Delivery to your home"
+msgstr "৩. বাড়িতে পৌঁছাবে"
+
+msgid "Call us"
+msgstr "ফোন করুন"
+
+msgid "My orders"
+msgstr "আমার অর্ডার"
+
+msgid "Our Products"
+msgstr "আমাদের পণ্য"
+
+msgid "Quantity"
+msgstr "পরিমাণ"
+
+msgid "Add to Cart"
+msgstr "কার্টে নিন"
+
+msgid "Out of stock"
+msgstr "স্টক নেই"
+
+msgid "No products right now."
+msgstr "এখন কোনো পণ্য নেই।"
+
+msgid "%(n)s items"
+msgstr "%(n)s টি পণ্য"
+
+msgid "View cart"
+msgstr "কার্ট দেখুন"
+
+msgid "Your Cart"
+msgstr "আপনার কার্ট"
+
+msgid "each"
+msgstr "প্রতি পিস"
+
+msgid "Remove"
+msgstr "মুছুন"
+
+msgid "Total"
+msgstr "মোট"
+
+msgid "Delivery charge, if any, is added at checkout."
+msgstr "ডেলিভারি চার্জ থাকলে অর্ডার করার সময় যোগ হবে।"
+
+msgid "Continue to Checkout"
+msgstr "অর্ডারের দিকে এগোন"
+
+msgid "Add more products"
+msgstr "আরও পণ্য নিন"
+
+msgid "Your cart is empty."
+msgstr "আপনার কার্ট খালি।"
+
+msgid "See Products"
+msgstr "পণ্য দেখুন"
+
+msgid "Checkout"
+msgstr "অর্ডার করুন"
+
+msgid "Your items"
+msgstr "আপনার পণ্য"
+
+msgid "Items total"
+msgstr "পণ্যের দাম"
+
+msgid "1. Delivery address"
+msgstr "১. ডেলিভারির ঠিকানা"
+
+msgid "Delivery"
+msgstr "ডেলিভারি"
+
+msgid "Free"
+msgstr "বিনামূল্যে"
+
+msgid "We do not deliver to this PIN code yet"
+msgstr "এই পিন কোডে এখনো ডেলিভারি হয় না"
+
+msgid "Add new address"
+msgstr "নতুন ঠিকানা যোগ করুন"
+
+msgid "2. How will you pay?"
+msgstr "২. কীভাবে টাকা দেবেন?"
+
+msgid ""
+"For UPI or bank transfer, you will see our payment details after placing the"
+" order."
+msgstr ""
+"UPI বা ব্যাংকে টাকা দিলে, অর্ডার করার পর আমাদের পেমেন্টের তথ্য দেখতে পাবেন।"
+
+msgid "Note (optional)"
+msgstr "কিছু জানাতে চাইলে লিখুন (ঐচ্ছিক)"
+
+msgid "Place Order"
+msgstr "অর্ডার নিশ্চিত করুন"
+
+msgid "My Orders"
+msgstr "আমার অর্ডার"
+
+msgid "You have not placed any order yet."
+msgstr "আপনি এখনো কোনো অর্ডার করেননি।"
+
+msgid "Order"
+msgstr "অর্ডার"
+
+msgid "Status"
+msgstr "অবস্থা"
+
+msgid "Payment"
+msgstr "পেমেন্ট"
+
+msgid "Placed on"
+msgstr "অর্ডারের তারিখ"
+
+msgid "Please pay"
+msgstr "অনুগ্রহ করে দিন"
+
+msgid "UPI ID"
+msgstr "UPI আইডি"
+
+msgid "Account name"
+msgstr "একাউন্টের নাম"
+
+msgid "Bank"
+msgstr "ব্যাংক"
+
+msgid "Account no"
+msgstr "একাউন্ট নম্বর"
+
+msgid "Last payment was not accepted:"
+msgstr "আগের পেমেন্ট গ্রহণ করা হয়নি:"
+
+msgid "After paying, enter the reference number (UTR) below."
+msgstr "টাকা দেওয়ার পর নিচে রেফারেন্স নম্বর (UTR) লিখুন।"
+
+msgid "I have paid"
+msgstr "আমি টাকা দিয়েছি"
+
+msgid "We received your payment details and will confirm soon."
+msgstr "আপনার পেমেন্টের তথ্য পেয়েছি, শীঘ্রই নিশ্চিত করব।"
+
+msgid "Items"
+msgstr "পণ্য"
+
+msgid "Delivery address"
+msgstr "ডেলিভারির ঠিকানা"
+
+msgid "View / Print Invoice"
+msgstr "বিল / ইনভয়েস দেখুন"
+
+msgid "Your invoice will be ready once we confirm the order."
+msgstr "অর্ডার নিশ্চিত হলে আপনার ইনভয়েস তৈরি হবে।"
+
+msgid "Cancel this order?"
+msgstr "এই অর্ডার বাতিল করবেন?"
+
+msgid "Cancel Order"
+msgstr "অর্ডার বাতিল করুন"
+
+msgid "All orders"
+msgstr "সব অর্ডার"
+
+msgid "My Account"
+msgstr "আমার একাউন্ট"
+
+msgid "Logout"
+msgstr "লগআউট"
+
+msgid "My Addresses"
+msgstr "আমার ঠিকানা"
+
+msgid "Main address"
+msgstr "প্রধান ঠিকানা"
+
+msgid "P.O."
+msgstr "পোস্ট অফিস"
+
+msgid "Landmark"
+msgstr "কাছের চেনা জায়গা"
+
+msgid "Edit"
+msgstr "বদলান"
+
+msgid "Make main"
+msgstr "প্রধান করুন"
+
+msgid "Remove this address?"
+msgstr "এই ঠিকানা মুছবেন?"
+
+msgid "You have no saved address yet."
+msgstr "এখনো কোনো ঠিকানা সেভ করা নেই।"
+
+msgid "Address"
+msgstr "ঠিকানা"
+
+msgid "Edit address"
+msgstr "ঠিকানা বদলান"
+
+msgid "New address"
+msgstr "নতুন ঠিকানা"
+
+msgid "Save Address"
+msgstr "ঠিকানা সেভ করুন"
+
+msgid "Back to addresses"
+msgstr "ঠিকানায় ফিরে যান"
+
+msgid "New here?"
+msgstr "নতুন এসেছেন?"
+
+msgid "Create an account"
+msgstr "নতুন একাউন্ট খুলুন"
+
+msgid "Create account"
+msgstr "একাউন্ট খুলুন"
+
+msgid "Already have an account?"
+msgstr "আগে থেকেই একাউন্ট আছে?"
+
+msgid "Mobile number"
+msgstr "মোবাইল নম্বর"
+
+msgid "10-digit mobile number"
+msgstr "১০ সংখ্যার মোবাইল নম্বর"
+
+msgid "Password"
+msgstr "পাসওয়ার্ড"
+
+msgid "At least 8 characters."
+msgstr "কমপক্ষে ৮টি অক্ষর।"
+
+msgid "Your name"
+msgstr "আপনার নাম"
+
+msgid "Name"
+msgstr "নাম"
+
+msgid "House / street"
+msgstr "বাড়ি / রাস্তা"
+
+msgid "Village / town"
+msgstr "গ্রাম / শহর"
+
+msgid "Post office"
+msgstr "পোস্ট অফিস"
+
+msgid "District"
+msgstr "জেলা"
+
+msgid "PIN code"
+msgstr "পিন কোড"
+
+msgid "Use as my main address"
+msgstr "এটি আমার প্রধান ঠিকানা"
+
+msgid "Payment reference number (UTR)"
+msgstr "পেমেন্টের রেফারেন্স নম্বর (UTR)"
+
+msgid "Screenshot (optional)"
+msgstr "স্ক্রিনশট (ঐচ্ছিক)"
+
+msgid "Welcome! Your account is ready."
+msgstr "স্বাগতম! আপনার একাউন্ট তৈরি হয়েছে।"
+
+msgid "Only %(n)s available of %(name)s (%(label)s)."
+msgstr "%(name)s (%(label)s) মাত্র %(n)s টি আছে।"
+
+msgid "Added: %(name)s (%(label)s)"
+msgstr "যোগ হয়েছে: %(name)s (%(label)s)"
+
+msgid "Please add your delivery address first."
+msgstr "আগে আপনার ডেলিভারির ঠিকানা যোগ করুন।"
+
+msgid "Order placed! Thank you."
+msgstr "অর্ডার হয়েছে! ধন্যবাদ।"
+
+msgid "Order cancelled."
+msgstr "অর্ডার বাতিল হয়েছে।"
+
+msgid "Payment details sent. We will check and confirm soon."
+msgstr "পেমেন্টের তথ্য পাঠানো হয়েছে। আমরা দেখে শীঘ্রই নিশ্চিত করব।"
+
+msgid "Please enter the payment reference number."
+msgstr "পেমেন্টের রেফারেন্স নম্বর লিখুন।"
+
+msgid "Your invoice will be ready after we confirm the order."
+msgstr "অর্ডার নিশ্চিত হলে আপনার ইনভয়েস তৈরি হবে।"
+
+msgid "Address saved."
+msgstr "ঠিকানা সেভ হয়েছে।"
+
+msgid "Address removed."
+msgstr "ঠিকানা মুছে গেছে।"
+
+msgid "Placed"
+msgstr "অর্ডার হয়েছে"
+
+msgid "Confirmed"
+msgstr "নিশ্চিত হয়েছে"
+
+msgid "Packed"
+msgstr "প্যাক হয়েছে"
+
+msgid "Dispatched"
+msgstr "পাঠানো হয়েছে"
+
+msgid "Delivered"
+msgstr "পৌঁছে গেছে"
+
+msgid "Cancelled"
+msgstr "বাতিল"
+
+msgid "Cash on delivery"
+msgstr "ডেলিভারির সময় নগদ"
+
+msgid "UPI transfer"
+msgstr "UPI-তে টাকা"
+
+msgid "Bank transfer"
+msgstr "ব্যাংকে টাকা"
+
+msgid "COD due"
+msgstr "ডেলিভারিতে দিতে হবে"
+
+msgid "COD collected"
+msgstr "নগদ নেওয়া হয়েছে"
+
+msgid "Awaiting payment proof"
+msgstr "পেমেন্টের তথ্যের অপেক্ষা"
+
+msgid "Proof submitted"
+msgstr "তথ্য জমা হয়েছে"
+
+msgid "Payment verified"
+msgstr "পেমেন্ট নিশ্চিত"
+
+msgid "Proof rejected"
+msgstr "তথ্য গ্রহণ হয়নি"

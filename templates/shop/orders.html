@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "My Orders" %} · GMM{% endblock %}
+{% block content %}
+<h1>{% trans "My Orders" %}</h1>
+{% for o in orders %}
+<a href="{% url 'shop:order_detail' o.order_no %}" style="text-decoration:none;color:inherit">
+  <div class="card">
+    <div class="row"><b>{{ o.order_no }}</b><span class="status {{ o.status }}">{{ o.get_status_display }}</span></div>
+    <div class="row muted"><span>{{ o.created_at|date:"d M Y" }}</span>
+      <span class="price">₹{{ o.total|floatformat:"-2" }}</span></div>
+  </div>
+</a>
+{% empty %}
+<div class="card">{% trans "You have not placed any order yet." %}</div>
+<a class="btn block" href="{% url 'shop:products' %}">{% trans "See Products" %}</a>
+{% endfor %}
+{% endblock %}

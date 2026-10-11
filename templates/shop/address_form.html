@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Address" %} · GMM{% endblock %}
+{% block content %}
+<h1>{% if editing %}{% trans "Edit address" %}{% else %}{% trans "New address" %}{% endif %}</h1>
+<form method="post" class="card" data-once>{% csrf_token %}
+  {% include "shop/_form.html" %}
+  <button class="btn block" type="submit">{% trans "Save Address" %}</button>
+</form>
+<a href="{% url 'shop:addresses' %}">← {% trans "Back to addresses" %}</a>
+{% endblock %}
