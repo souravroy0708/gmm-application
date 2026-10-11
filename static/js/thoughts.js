@@ -21,6 +21,14 @@
     paper:   { bg: ["#FFFFFF", "#EFEBDB"], text: "#1B2A20", accent: "#1F6B3A", sub: "rgba(27,42,32,.7)",     line: "rgba(27,42,32,.15)",   deco: 0.06, plate: "#FFFFFF", glow: "rgba(242,193,78,.16)",  panel: "rgba(31,107,58,.07)",   panelLine: "rgba(31,107,58,.16)",  onAccent: "#FFFFFF" },
     earth:   { bg: ["#6B4423", "#34200F"], text: "#FFF4E0", accent: "#F2C14E", sub: "rgba(255,244,224,.78)", line: "rgba(255,244,224,.22)", deco: 0.08, plate: "#FFFFFF", glow: "rgba(255,255,255,.09)", panel: "rgba(255,255,255,.08)", panelLine: "rgba(255,244,224,.18)", onAccent: "#34200F" }
   };
+  // ready-made texts: add more here as { t: "dropdown title", x: "text (\n = new line)" }
+  var PRESETS = [
+    { t: "একলা চলো রে", x: "যদি তোর ডাক শুনে কেউ না আসে\nতবে একলা চলো রে।\n\n— রবীন্দ্রনাথ ঠাকুর" },
+    { t: "বল বীর", x: "বল বীর—\nবল উন্নত মম শির!\n\n— কাজী নজরুল ইসলাম" },
+    { t: "মা দুর্গার আশীর্বাদ", x: "মা দুর্গার আশীর্বাদে\nসকল বাধা দূর হোক,\nজীবন ভরে উঠুক\nশক্তি, সাহস ও সাফল্যে।\n\n🙏 জয় মা দুর্গা 🙏" },
+    { t: "হনুমানের কৃপা", x: "শ্রীহনুমানের কৃপায়\nমনে থাকুক সাহস,\nকর্মে থাকুক শক্তি,\nআর জীবনে আসুক সাফল্য।\n\n🚩 জয় বজরংবলী 🚩" },
+    { t: "মা লক্ষ্মীর আশীর্বাদ", x: "মা লক্ষ্মীর আশীর্বাদে\nআপনার সংসার ভরে উঠুক\nসুখ, শান্তি ও সমৃদ্ধিতে।\n\n🙏 জয় মা লক্ষ্মী 🙏" }
+  ];
   var state = { theme: "leaf", size: "square", foot: "dir" };
 
   // remembered between visits (name / role / look) - optional, never required
@@ -63,7 +71,16 @@
     ctx.restore();
   }
 
-  function wrap(text, maxW) {
+  function cleanML(s) { return (s || "").replace(/\r/g, "").split("\n").map(clean).join("\n").replace(/^\n+|\n+$/g, ""); }
+
+  function wrap(text, maxW) {   // each typed line is wrapped on its own, so line breaks are kept
+    if (text.indexOf("\n") < 0) return wrap1(text, maxW);
+    var out = [];
+    text.split("\n").forEach(function (ln) { if (ln) out.push.apply(out, wrap1(ln, maxW)); else out.push(""); });
+    return out;
+  }
+
+  function wrap1(text, maxW) {
     var words = text.split(" "), lines = [], cur = "";
     words.forEach(function (w) {
       var test = cur ? cur + " " + w : w;
@@ -158,7 +175,7 @@
   /* ---------- drawing ---------- */
   function draw() {
     var t = THEMES[state.theme], dim = SIZES[state.size], W = dim[0], H = dim[1], story = state.size === "story";
-    var text = clean(ta.value) || cfg.sample, name = clean(nameEl.value), role = clean(roleEl.value);
+    var text = cleanML(ta.value) || cfg.sample, name = clean(nameEl.value), role = clean(roleEl.value);
     if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; }
 
     // background: gradient, soft light, large circles
@@ -243,7 +260,7 @@
 
   function caption() {
     var name = clean(nameEl.value);
-    return "\u201C" + clean(ta.value) + "\u201D" + (name ? "\n— " + name : "") + "\n\n" + cfg.brand + "\n" + (location.protocol + "//" + cfg.site);
+    return "\u201C" + cleanML(ta.value) + "\u201D" + (name ? "\n— " + name : "") + "\n\n" + cfg.brand + "\n" + (location.protocol + "//" + cfg.site);
   }
 
   function blob() { draw(); return new Promise(function (res) { cv.toBlob(res, "image/png"); }); }
@@ -307,6 +324,17 @@
     var chip = d.querySelector('#thSizes .th-chip[data-size="' + warnBtn.dataset.size + '"]');
     if (chip) chip.click();
   });
+
+  var presetEl = d.getElementById("thPreset");
+  if (presetEl) {
+    PRESETS.forEach(function (p, i) { var o = d.createElement("option"); o.value = i; o.textContent = p.t; presetEl.appendChild(o); });
+    presetEl.addEventListener("change", function () {
+      var p = PRESETS[presetEl.value];
+      if (!p) return;                         // "write your own": leave the text as it is
+      ta.value = p.x; presetEl.value = "";    // reset so the same preset can be picked again
+      ta.dispatchEvent(new Event("input")); ta.focus();
+    });
+  }
 
   ta.addEventListener("input", schedule);
   nameEl.addEventListener("input", function () { store("name", nameEl.value); schedule(); });

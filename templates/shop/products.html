@@ -79,7 +79,7 @@
             <p class="gst">{% trans "Prices include GST" %}</p>
             <div class="buyrow">
               <div class="qty"><button type="button" data-step="-1" aria-label="-">−</button>
-                <input class="q" type="number" name="qty" value="1" min="1" max="{{ p.default_pack.stock }}" inputmode="numeric" aria-label="{% trans 'Quantity' %}">
+                <input class="q" type="number" name="qty" value="1" min="1" max="{% if p.default_pack.stock > 10 %}10{% else %}{{ p.default_pack.stock }}{% endif %}" inputmode="numeric" aria-label="{% trans 'Quantity' %}">
                 <button type="button" data-step="1" aria-label="+">+</button></div>
               <button class="btn" type="submit"><svg class="ic"><use href="#i-cart"/></svg>{% trans "Add to Cart" %}</button>
             </div>

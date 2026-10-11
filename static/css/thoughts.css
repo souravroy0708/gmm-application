@@ -8,8 +8,8 @@
 .th-form,.th-out{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow)}
 .th-lab{display:block;font-weight:700;font-size:.95rem;margin:14px 0 6px;color:var(--text)}
 .th-lab:first-child{margin-top:0}
-.th textarea,.th input[type=text]{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;font:500 1.02rem/1.5 "Hind Siliguri",sans-serif;background:var(--bg,#fff);color:var(--text);resize:vertical}
-.th textarea:focus,.th input[type=text]:focus{border-color:var(--green);outline:none;box-shadow:0 0 0 3px rgba(31,107,58,.18)}
+.th textarea,.th select,.th input[type=text]{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;font:500 1.02rem/1.5 "Hind Siliguri",sans-serif;background:var(--bg,#fff);color:var(--text);resize:vertical}
+.th textarea:focus,.th select:focus,.th input[type=text]:focus{border-color:var(--green);outline:none;box-shadow:0 0 0 3px rgba(31,107,58,.18)}
 .th-count{text-align:right;font-size:.82rem;color:var(--ink-2,#5f6c72);margin-top:3px}
 .th-two{display:grid;gap:12px}
 @media (min-width:520px){.th-two{grid-template-columns:1fr 1fr}.th-two .th-lab{margin-top:6px}}
@@ -38,3 +38,5 @@ html[data-theme="dark"] .th-note{color:var(--lite)}
 .th-warn[hidden]{display:none}
 .th-link{border:0;background:none;padding:0;margin-left:4px;font:700 .88rem "Hind Siliguri",sans-serif;color:var(--green);text-decoration:underline;cursor:pointer}
 html[data-theme="dark"] .th-link{color:var(--lite)}
+
+.th select{margin-bottom:10px;resize:none}

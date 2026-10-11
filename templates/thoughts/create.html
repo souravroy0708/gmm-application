@@ -25,6 +25,9 @@
 
   <div class="th-grid">
     <section class="th-form" aria-label="{% if bn == 'bn' %}কার্ডের তথ্য{% else %}Card details{% endif %}">
+      <label class="th-lab" for="thPreset">{% if bn == "bn" %}প্রস্তুত লেখা (ঐচ্ছিক){% else %}Ready-made text (optional){% endif %}</label>
+      <select id="thPreset"><option value="">{% if bn == "bn" %}— নিজের ভাবনা লিখুন —{% else %}— Write your own thought —{% endif %}</option></select>
+
       <label class="th-lab" for="thText">{% if bn == "bn" %}আপনার ভাবনা{% else %}Your thought{% endif %}</label>
       <textarea id="thText" rows="6" maxlength="{{ max_chars }}" placeholder="{% if bn == 'bn' %}এখানে লিখুন বা পেস্ট করুন…{% else %}Type or paste here…{% endif %}"></textarea>
       <div class="th-count"><span id="thCount">0</span>/{{ max_chars }}</div>

@@ -17,7 +17,7 @@
     <form method="post" action="{% url 'shop:cart_update' %}" class="buyrow" data-auto>{% csrf_token %}
       <input type="hidden" name="variant_id" value="{{ l.variant.pk }}">
       <div class="qty"><button type="button" data-step="-1" aria-label="-">−</button>
-        <input class="q" type="number" name="qty" value="{{ l.qty }}" min="1" max="{{ l.variant.stock }}" inputmode="numeric" aria-label="{% trans 'Quantity' %}">
+        <input class="q" type="number" name="qty" value="{{ l.qty }}" min="1" max="{% if l.variant.stock > 10 %}10{% else %}{{ l.variant.stock }}{% endif %}" inputmode="numeric" aria-label="{% trans 'Quantity' %}">
         <button type="button" data-step="1" aria-label="+">+</button></div>
       <button class="btn small danger" type="submit" name="action" value="remove" style="flex:none">{% trans "Remove" %}</button>
     </form>

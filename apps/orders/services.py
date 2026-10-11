@@ -6,7 +6,7 @@ from django.db.models import F
 from django.utils import timezone
 
 from apps.catalog.models import ProductVariant
-from apps.core.constants import PaymentMethod, PaymentStatus
+from apps.core.constants import ACTIVE_ORDER_STATUSES, MAX_CART_LINES, MAX_QTY_PER_ITEM, PaymentMethod, PaymentStatus, say
 from apps.core.models import Sequence, SiteSetting
 
 from .models import ALLOWED_TRANSITIONS, Order, OrderItem, OrderStatus, OrderStatusLog, ServiceablePin
@@ -60,6 +60,14 @@ def place_order(*, user, address, items, payment_method, idempotency_key=None, n
         wanted[variant_id] = wanted.get(variant_id, 0) + int(qty)
     if not wanted:
         raise OrderError("Your cart is empty.")
+    if len(wanted) > MAX_CART_LINES or any(q > MAX_QTY_PER_ITEM for q in wanted.values()):
+        raise OrderError(say(f"An order can have at most {MAX_CART_LINES} products, with {MAX_QTY_PER_ITEM} of each.",
+                             f"একটি অর্ডারে সর্বোচ্চ {MAX_CART_LINES}টি পণ্য এবং প্রতিটির {MAX_QTY_PER_ITEM}টি নেওয়া যাবে।"))
+    if placed_by is None:   # customers: one order at a time (staff can still place orders for them)
+        type(user).objects.select_for_update().filter(pk=user.pk).first()   # lock stops two simultaneous submits
+        if Order.objects.filter(user=user, status__in=ACTIVE_ORDER_STATUSES).exists():
+            raise OrderError(say("You already have an order in progress. Please wait until it is delivered or cancelled.",
+                                 "আপনার একটি অর্ডার চলছে। ডেলিভারি বা বাতিল হওয়ার পর নতুন অর্ডার করুন।"))
 
     variants = {
         v.pk: v

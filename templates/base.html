@@ -15,9 +15,8 @@
   <script>(function(){try{var t=localStorage.getItem("gmm-theme");if(t!=="dark"&&t!=="light"){t="dark"}document.documentElement.setAttribute("data-theme",t);if(t==="dark"){document.querySelector("meta[name=theme-color]").setAttribute("content","#0D1410")}}catch(e){}})();</script>
   <title>{% block title %}GMM Distributors{% endblock %}</title>
   <link rel="icon" href="{% static 'images/logo.jpg' %}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@500;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="{% static 'css/fonts.css' %}">
+  <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
   <link rel="stylesheet" href="{% static 'css/app.css' %}">
   <link rel="stylesheet" href="{% static 'css/premium.css' %}?v=2">
   <link rel="stylesheet" href="{% static 'css/pages.css' %}">
@@ -123,7 +122,7 @@ b.addEventListener("click",function(){apply(h.getAttribute("data-theme")==="dark
 })();
 </script>
 <script>
-if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("{% url 'pages:sw' %}").catch(function(){})})}
+if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("{% url 'pages:sw' %}").then(function(r){if(navigator.storage&&navigator.storage.persist){navigator.storage.persist()}}).catch(function(){})})}
 </script>
 <script src="{% static 'js/install.js' %}?v=2" defer></script>
 <script src="{% static 'js/app.js' %}" defer></script>

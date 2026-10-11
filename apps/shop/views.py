@@ -9,6 +9,7 @@ from django.views.decorators.http import require_POST
 
 from apps.accounts.models import Address
 from apps.catalog.models import Product, ProductVariant
+from apps.core.constants import ACTIVE_ORDER_STATUSES, MAX_CART_LINES, MAX_QTY_PER_ITEM, say
 from apps.core.models import SiteSetting
 from apps.invoicing.services import InvoiceError, issue_invoice
 from apps.orders.models import Order, ServiceablePin
@@ -56,6 +57,13 @@ def cart_add(request):
     qty = max(_int(request.POST.get("qty"), 1), 1)
     cart = Cart(request)
     already = cart.data.get(str(variant.pk), 0)
+    if not already and len(cart.data) >= MAX_CART_LINES:
+        messages.warning(request, say(f"Your cart can hold at most {MAX_CART_LINES} different products.",
+                                      f"কার্টে সর্বোচ্চ {MAX_CART_LINES}টি আলাদা পণ্য রাখা যায়।"))
+        return redirect(request.POST.get("next") or "shop:products")
+    if already + qty > MAX_QTY_PER_ITEM:
+        qty = max(MAX_QTY_PER_ITEM - already, 0)
+        messages.warning(request, say(f"Maximum {MAX_QTY_PER_ITEM} per product.", f"প্রতিটি পণ্য সর্বোচ্চ {MAX_QTY_PER_ITEM}টি নেওয়া যাবে।"))
     if already + qty > variant.stock:
         qty = max(variant.stock - already, 0)
         messages.warning(request, _("Only %(n)s available of %(name)s (%(label)s).") % {"n": variant.stock, "name": variant.product.name, "label": variant.label})
@@ -78,7 +86,11 @@ def cart_update(request):
     if request.POST.get("action") == "remove":
         cart.remove(variant_id)
     else:
-        cart.set(variant_id, _int(request.POST.get("qty")))
+        qty = _int(request.POST.get("qty"))
+        if qty > MAX_QTY_PER_ITEM:
+            qty = MAX_QTY_PER_ITEM
+            messages.warning(request, say(f"Maximum {MAX_QTY_PER_ITEM} per product.", f"প্রতিটি পণ্য সর্বোচ্চ {MAX_QTY_PER_ITEM}টি নেওয়া যাবে।"))
+        cart.set(variant_id, qty)
     return redirect("shop:cart")
 
 
@@ -90,6 +102,10 @@ def checkout(request):
     if not lines:
         messages.info(request, _("Your cart is empty."))
         return redirect("shop:products")
+    if request.user.orders.filter(status__in=ACTIVE_ORDER_STATUSES).exists():
+        messages.warning(request, say("You already have an order in progress. You can place a new order after it is delivered or cancelled.",
+                                      "আপনার একটি অর্ডার চলছে। ডেলিভারি বা বাতিল হওয়ার পর নতুন অর্ডার করতে পারবেন।"))
+        return redirect("shop:orders")
     addresses = list(request.user.addresses.all())
     if not addresses:
         messages.info(request, _("Please add your delivery address first."))
