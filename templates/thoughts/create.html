@@ -5,7 +5,7 @@
 {% block content %}
 {% with bn=LANGUAGE_CODE %}
 <div class="th" id="thApp"
-     data-logo="{% static 'images/logo.jpg' %}" data-site="{{ site_host }}"
+     data-logo="{% static 'images/logo.jpg' %}" data-site="{{ site_url }}"
      data-dir-photo="{% static 'images/chikur-kumar-ray.jpg' %}"
      data-dir-name="{% if bn == 'bn' %}চিকুর কুমার রায়{% else %}Chikur Kumar Ray{% endif %}"
      data-dir-role="{% trans 'Founder & Director' %}"

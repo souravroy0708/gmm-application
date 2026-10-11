@@ -180,3 +180,6 @@ UNFOLD = {
 
 # Bump to force every phone to drop its saved service-worker cache.
 DEPLOY_VERSION = "1"
+
+# Public address printed in thought-card captions.
+SHOP_URL = "https://shop.gmmdistributors.xyz/"

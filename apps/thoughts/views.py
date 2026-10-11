@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import render
 
 MAX_THOUGHT_CHARS = 500
@@ -13,5 +14,5 @@ def create(request):
     return render(request, "thoughts/create.html", {
         "max_chars": MAX_THOUGHT_CHARS,
         "default_name": user.name if user.is_authenticated else "",
-        "site_host": request.get_host(),
+        "site_url": settings.SHOP_URL,
     })

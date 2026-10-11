@@ -260,7 +260,7 @@
 
   function caption() {
     var name = clean(nameEl.value);
-    return "\u201C" + cleanML(ta.value) + "\u201D" + (name ? "\n— " + name : "") + "\n\n" + cfg.brand + "\n" + (location.protocol + "//" + cfg.site);
+    return "\u201C" + cleanML(ta.value) + "\u201D" + (name ? "\n— " + name : "") + "\n\n" + cfg.brand + "\n" + cfg.site;
   }
 
   function blob() { draw(); return new Promise(function (res) { cv.toBlob(res, "image/png"); }); }
