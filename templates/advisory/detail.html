@@ -1,52 +1,68 @@
 {% extends "base.html" %}{% load static %}
 {% block title %}{{ crop.name }} চাষের পরামর্শ | GMM Distributors{% endblock %}
-{% block head_extra %}<link rel="stylesheet" href="{% static 'css/krishi.css' %}"><meta name="description" content="{{ crop.name }} চাষ: {{ crop.tagline }}">{% endblock %}
+{% block head_extra %}{% include "advisory/_og.html" %}<script src="{% static 'js/krishi.js' %}" defer></script>{% endblock %}
 {% block mainclass %}kp{% endblock %}
 {% block content %}
-<nav class="kp-crumb" aria-label="পথ"><a href="{% url 'advisory:index' %}">← কৃষি পরামর্শ</a><span>/</span><span>{{ crop.name }}</span></nav>
-
-<section class="kp-dhero">
-  <img src="{% static 'images/krishi/'|add:crop.slug|add:'.svg' %}" alt="{{ crop.name }} চাষের ছবি" width="480" height="300">
-  <div class="kp-dhero-b">
-    <span class="kp-tag">{{ crop.season }}</span>
-    <h1>{{ crop.name }} <small style="font-size:.5em;color:var(--ink-2)">{{ crop.en }}</small></h1>
+<section class="kp-dh">
+  <img src="{% static crop.img %}" alt="{{ crop.name }} চাষের ছবি" width="1200" height="630" fetchpriority="high">
+  <a class="kp-back" href="{% url 'advisory:index' %}">← সব ফসল</a>
+  <div class="kp-round">
+    <a class="wa" href="{{ wa_link }}" target="_blank" rel="noopener" aria-label="WhatsApp-এ শেয়ার"><svg class="ic"><use href="#i-chat"/></svg></a>
+    <a class="fb" href="{{ fb_link }}" target="_blank" rel="noopener" aria-label="Facebook-এ শেয়ার"><b class="kp-fbi">f</b></a>
+  </div>
+  <div class="kp-dh-in">
+    <span class="kp-badge">{{ crop.season }}</span>
+    <h1>{{ crop.name }}<small>{{ crop.en }}</small></h1>
     <p>{{ crop.tagline }}</p>
+    <div class="kp-glass"><span>⏳ {{ crop.duration }}</span><span>📅 {{ crop.season }}</span></div>
     <div class="kp-cta">
-      {% if site.whatsapp_number %}<a class="kp-btn wa" href="https://wa.me/91{{ site.whatsapp_number }}?text={{ wa_text|urlencode }}" target="_blank" rel="noopener">হোয়াটসঅ্যাপে জিজ্ঞাসা</a>{% endif %}
-      {% if site.support_phone %}<a class="kp-btn line" href="tel:{{ site.support_phone }}">📞 ফোন করুন</a>{% endif %}
+      {% if site.whatsapp_number %}<a class="kp-btn wa sm" href="https://wa.me/91{{ site.whatsapp_number }}?text={{ wa_text|urlencode }}" target="_blank" rel="noopener"><svg class="ic"><use href="#i-chat"/></svg>পরামর্শ নিন</a>{% endif %}
+      {% if site.support_phone %}<a class="kp-btn ghost sm" href="tel:{{ site.support_phone }}">📞 ফোন করুন</a>{% endif %}
     </div>
   </div>
 </section>
 
-<div class="kp-facts">
-  <div class="kp-fact"><small>সময়কাল</small><b>{{ crop.duration }}</b></div>
-  <div class="kp-fact"><small>উপযুক্ত মাটি</small><b>{{ crop.soil }}</b></div>
-  <div class="kp-fact"><small>বীজের পরিমাণ</small><b>{{ crop.seed }}</b></div>
-  <div class="kp-fact"><small>মরসুম</small><b>{{ crop.season }}</b></div>
+<nav class="kp-nav" aria-label="এই পেজের বিভাগ">
+  <a href="#steps">চাষের ধাপ</a><a href="#varieties">জাত</a><a href="#fert">সার</a><a href="#pests">রোগ-পোকা</a><a href="#mistakes">ভুল এড়ান</a><a href="#faq">প্রশ্নোত্তর</a><a href="#share">শেয়ার</a>
+</nav>
+
+<div class="kp-facts kp-rv">
+  <div class="kp-fact"><i>⏳</i><small>সময়কাল</small><b>{{ crop.duration }}</b></div>
+  <div class="kp-fact"><i>🪴</i><small>উপযুক্ত মাটি</small><b>{{ crop.soil }}</b></div>
+  <div class="kp-fact"><i>🌱</i><small>বীজের পরিমাণ</small><b>{{ crop.seed }}</b></div>
+  <div class="kp-fact"><i>📅</i><small>মরসুম</small><b>{{ crop.season }}</b></div>
 </div>
 
-<section class="kp-sec"><h2>উন্নত জাত</h2><p class="kp-sub">আপনার এলাকার জন্য উপযুক্ত জাত বাছতে ব্লক কৃষি দপ্তরের পরামর্শ নিন।</p>
+<section class="kp-sec kp-rv"><div class="kp-two">{% for f in crop.facts %}<div class="kp-did"><small>জানেন কি?</small>{{ f }}</div>{% endfor %}</div></section>
+
+<section class="kp-sec" id="steps"><h2>চাষের ধাপে ধাপে গাইড</h2><p class="kp-sub">বীজ বা চারা থেকে ঘরে তোলা পর্যন্ত।</p>
+  <ol class="kp-tl">{% for t, d in crop.stages %}<li class="kp-step kp-rv"><div><b>{{ t }}</b>{{ d }}</div></li>{% endfor %}</ol></section>
+
+<section class="kp-sec kp-rv" id="varieties"><h2>উন্নত জাত</h2><p class="kp-sub">এলাকার জন্য উপযুক্ত জাত বাছতে ব্লক কৃষি দপ্তরের পরামর্শ নিন।</p>
   <div class="kp-vars">{% for v in crop.varieties %}<span>{{ v }}</span>{% endfor %}</div></section>
 
-<section class="kp-sec"><h2>চাষের ধাপে ধাপে গাইড</h2><p class="kp-sub">বীজতলা থেকে ঘরে তোলা পর্যন্ত।</p>
-  <ol class="kp-steps">{% for t, d in crop.stages %}<li><b>{{ t }}</b>{{ d }}</li>{% endfor %}</ol></section>
+<section class="kp-sec kp-rv" id="fert"><h2>সার ব্যবস্থাপনা</h2><div class="kp-fert">{{ crop.fert }}</div></section>
 
-<section class="kp-sec"><h2>সার ব্যবস্থাপনা</h2><div class="kp-fert">{{ crop.fert }}</div></section>
+<section class="kp-sec" id="pests"><h2>রোগ-পোকা চেনা ও প্রতিকার</h2><p class="kp-sub">লক্ষণ দেখলে দেরি না করে ছবি তুলে আমাদের পাঠান।</p>
+  {% for n, s, a in crop.pests %}<details class="kp-acc bug kp-rv"{% if forloop.first %} open{% endif %}><summary>🐛 {{ n }}</summary><div class="b"><p><b>লক্ষণ:</b> {{ s }}</p><p><b>করণীয়:</b> {{ a }}</p></div></details>{% endfor %}</section>
 
-<section class="kp-sec"><h2>রোগ-পোকা চেনা ও প্রতিকার</h2><p class="kp-sub">লক্ষণ দেখলে দেরি না করে ছবি তুলে আমাদের পাঠান।</p>
-  <div class="kp-prob">{% for n, s, a in crop.pests %}<article><h3>{{ n }}</h3><p><b>লক্ষণ:</b> {{ s }}</p><p><b>করণীয়:</b> {{ a }}</p></article>{% endfor %}</div></section>
+<section class="kp-sec kp-rv" id="mistakes"><h2>এই ভুলগুলো এড়িয়ে চলুন</h2><ul class="kp-list no">{% for m in crop.mistakes %}<li>{{ m }}</li>{% endfor %}</ul>
+  <h2 style="margin-top:26px">সফল চাষের পরামর্শ</h2><ul class="kp-list ok">{% for t in crop.tips %}<li>{{ t }}</li>{% endfor %}</ul></section>
 
-<section class="kp-sec"><h2>কাজের পরামর্শ</h2><ul class="kp-tips">{% for t in crop.tips %}<li>{{ t }}</li>{% endfor %}</ul></section>
+<section class="kp-sec" id="faq"><h2>সচরাচর প্রশ্ন</h2>
+  {% for q, a in crop.faq %}<details class="kp-acc kp-rv"><summary>{{ q }}</summary><div class="b">{{ a }}</div></details>{% endfor %}</section>
 
-<section class="kp-sec kp-band">
+{% include "advisory/_share.html" %}
+
+<section class="kp-sec kp-band kp-rv">
   <h2>{{ crop.name }} চাষের জন্য সার ও কৃষি-পণ্য</h2>
-  <p>GMM-এর জৈব ও কৃষি-পণ্য দেখুন, অথবা কোনটা আপনার জমির জন্য ঠিক — আমাদের জিজ্ঞাসা করুন।</p>
+  <p>GMM-এর পণ্য দেখুন, অথবা কোনটা আপনার জমির জন্য ঠিক — আমাদের জিজ্ঞাসা করুন।</p>
   <div class="kp-cta"><a class="kp-btn sun" href="{% url 'shop:products' %}">🛒 পণ্য দেখুন</a>
   {% if site.support_phone %}<a class="kp-btn ghost" href="tel:{{ site.support_phone }}">📞 ফোন করুন</a>{% endif %}</div>
 </section>
 
 <section class="kp-sec"><h2>অন্যান্য ফসল</h2>
-  <div class="kp-mini">{% for c in others %}<a href="{% url 'advisory:detail' c.slug %}"><img src="{% static 'images/krishi/'|add:c.slug|add:'.svg' %}" alt="" loading="lazy"><b>{{ c.name }}</b></a>{% endfor %}</div></section>
+  <div class="kp-rail">{% for c in others %}<a class="kp-card" href="{% url 'advisory:detail' c.slug %}"><img src="{% static c.img %}" alt="{{ c.name }}" loading="lazy" width="1200" height="630"><span class="go" aria-hidden="true">→</span><div class="kp-card-b"><h3>{{ c.name }}</h3><span class="kp-tag">{{ c.season }}</span></div></a>{% endfor %}</div></section>
 
 <p class="kp-note"><b>দ্রষ্টব্য:</b> এটি সাধারণ নির্দেশিকা। সার ও ওষুধের মাত্রা মাটি পরীক্ষা ও স্থানীয় কৃষি আধিকারিকের পরামর্শ অনুযায়ী ঠিক করুন এবং পণ্যের লেবেল মেনে ব্যবহার করুন।</p>
 {% endblock %}
