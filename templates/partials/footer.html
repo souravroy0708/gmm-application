@@ -11,6 +11,7 @@
       <a href="{% url 'pages:vision_mission' %}">{% trans "Vision & Mission" %}</a>
       <a href="{% url 'pages:leadership' %}">{% trans "Leadership" %}</a>
       <a href="{% url 'pages:contact' %}">{% trans "Contact" %}</a>
+      <a href="{% url 'advisory:index' %}">{% if LANGUAGE_CODE == "bn" %}কৃষি পরামর্শ{% else %}Krishi Paramarsha (Advice){% endif %}</a>
       <a href="{% url 'shop:products' %}">{% trans "Shop" %}</a>
     </nav>
     <div class="gf-col">

@@ -1,0 +1,79 @@
+{% extends "base.html" %}{% load static %}
+{% block title %}কৃষি পরামর্শ | GMM Distributors{% endblock %}
+{% block head_extra %}<link rel="stylesheet" href="{% static 'css/krishi.css' %}"><meta name="description" content="ধান, আলু, পাট, সরিষা ও সবজি চাষের সহজ বাংলা পরামর্শ — GMM Distributors">{% endblock %}
+{% block mainclass %}kp{% endblock %}
+{% block content %}
+<section class="kp-hero" aria-labelledby="kp-h">
+  <span class="kp-badge">🌾 GMM কৃষি পরামর্শ কেন্দ্র</span>
+  <h1 id="kp-h">কৃষি পরামর্শ<br>সঠিক চাষ, ভালো ফলন</h1>
+  <p>ধান, আলু, পাট, সরিষা ও সবজি — মরসুম, জাত, সার, রোগ-পোকা ও যত্নের সহজ বাংলা গাইড। বিস্তারিত জানতে সরাসরি আমাদের সঙ্গে কথা বলুন।</p>
+  <div class="kp-cta">
+    <a class="kp-btn sun" href="#crops">ফসল বেছে নিন</a>
+    {% if site.whatsapp_number %}<a class="kp-btn wa" href="https://wa.me/91{{ site.whatsapp_number }}?text={{ 'নমস্কার, আমি চাষ নিয়ে পরামর্শ চাই।'|urlencode }}" target="_blank" rel="noopener">হোয়াটসঅ্যাপে পরামর্শ</a>{% endif %}
+  </div>
+  <div class="kp-stats"><div><b>{{ crops|length }}টি</b><span>ফসলের গাইড</span></div><div><b>৩টি</b><span>মরসুম</span></div><div><b>বাংলায়</b><span>সহজ ভাষায়</span></div></div>
+</section>
+
+<section class="kp-sec" id="crops">
+  <h2>আপনার ফসল বেছে নিন</h2>
+  <p class="kp-sub">মরসুম অনুযায়ী ফিল্টার করুন, তারপর ফসলের কার্ডে ট্যাপ করুন।</p>
+  <div class="kp-chips" role="group" aria-label="মরসুম">
+    <button type="button" class="kp-chip" data-f="all" aria-pressed="true">সব ফসল</button>
+    <button type="button" class="kp-chip" data-f="kharif" aria-pressed="false">খরিফ</button>
+    <button type="button" class="kp-chip" data-f="rabi" aria-pressed="false">রবি (শীতকাল)</button>
+    <button type="button" class="kp-chip" data-f="veg" aria-pressed="false">সবজি</button>
+  </div>
+  <div class="kp-grid">
+    {% for c in crops %}
+    <a class="kp-card" href="{% url 'advisory:detail' c.slug %}" data-kind="{{ c.kind }}">
+      <img src="{% static 'images/krishi/'|add:c.slug|add:'.svg' %}" alt="{{ c.name }} চাষের ছবি" loading="lazy" width="480" height="300">
+      <div class="kp-card-b">
+        <h3>{{ c.name }}</h3><small>{{ c.en }}</small>
+        <p>{{ c.tagline }}</p>
+        <div class="kp-meta"><span class="kp-tag">{{ c.season }}</span><span class="kp-tag">{{ c.duration }}</span></div>
+        <span class="kp-more">বিস্তারিত দেখুন →</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="kp-sec">
+  <h2>মরসুম ক্যালেন্ডার</h2>
+  <p class="kp-sub">কোন মাসে কোন ফসলের বপন, বৃদ্ধি ও কাটার সময় — এক নজরে।</p>
+  <div class="kp-cal" tabindex="0" role="region" aria-label="ফসলের মরসুম ক্যালেন্ডার">
+    <table>
+      <thead><tr><th scope="col">ফসল</th>{% for m in months %}<th scope="col">{{ m }}</th>{% endfor %}</tr></thead>
+      <tbody>{% for r in calendar %}<tr><td><a href="{% url 'advisory:detail' r.crop.slug %}">{{ r.crop.name }}</a></td>{% for s in r.cells %}<td><i class="{{ s }}"></i></td>{% endfor %}</tr>{% endfor %}</tbody>
+    </table>
+  </div>
+  <div class="kp-legend"><span style="--c:var(--sun)">বপন / রোপণ</span><span style="--c:#8CCB8F">বৃদ্ধি</span><span style="--c:var(--green)">কাটার সময়</span></div>
+</section>
+
+<section class="kp-sec">
+  <h2>কীভাবে পরামর্শ নেবেন</h2>
+  <ol class="kp-steps">
+    <li><b>ফসল বেছে নিন</b>আপনার ফসলের গাইড পড়ুন — মরসুম, জাত, সার ও যত্নের ধাপ পাবেন।</li>
+    <li><b>সমস্যা জানান</b>পাতা বা গাছের ছবি তুলে ফোন বা হোয়াটসঅ্যাপে আমাদের পাঠান।</li>
+    <li><b>সঠিক পণ্য বেছে নিন</b>অ্যাপের দোকান থেকে প্রয়োজনীয় সার ও কৃষি-পণ্য অর্ডার করুন।</li>
+  </ol>
+</section>
+
+<section class="kp-sec kp-band">
+  <h2>পরামর্শ বা পণ্য নিয়ে কথা বলতে চান?</h2>
+  <p>আমরা আরামবাগ, হুগলি থেকে আপনার পাশে আছি।</p>
+  <div class="kp-cta">
+    {% if site.support_phone %}<a class="kp-btn sun" href="tel:{{ site.support_phone }}">📞 ফোন করুন</a>{% endif %}
+    <a class="kp-btn ghost" href="{% url 'shop:products' %}">🛒 পণ্য দেখুন</a>
+  </div>
+</section>
+
+<p class="kp-note"><b>দ্রষ্টব্য:</b> এখানকার তথ্য সাধারণ নির্দেশিকা (পশ্চিমবঙ্গের জন্য)। আবহাওয়া ও মাটি অনুযায়ী ফলাফল ভিন্ন হতে পারে। রাসায়নিক সার বা ওষুধ ব্যবহারের আগে মাটি পরীক্ষা করুন, স্থানীয় ব্লক কৃষি দপ্তর/কেভিকে-র পরামর্শ নিন এবং পণ্যের লেবেল মেনে চলুন।</p>
+
+<script>
+(function(){var chips=document.querySelectorAll(".kp-chip"),cards=document.querySelectorAll(".kp-card");
+chips.forEach(function(c){c.addEventListener("click",function(){var f=c.dataset.f;
+chips.forEach(function(x){x.setAttribute("aria-pressed",x===c)});
+cards.forEach(function(k){k.hidden=!(f==="all"||k.dataset.kind===f||(f==="kharif"&&k.dataset.kind==="kharif"))})})});})();
+</script>
+{% endblock %}

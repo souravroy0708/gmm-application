@@ -50,6 +50,8 @@
     <li><span class="ico"><svg class="ic"><use href="#i-phone"/></svg></span><div><b>{% trans "Help by phone" %}</b><span class="s">{% trans "Call or WhatsApp us" %}</span></div></li>
   </ul>
 
+  <a class="kp-promo" href="{% url 'advisory:index' %}"><span class="kp-promo-ic">🌾</span><span><b>{% if LANGUAGE_CODE == "bn" %}কৃষি পরামর্শ — ধান, আলু, পাট ও আরও{% else %}Krishi Paramarsha — crop advice{% endif %}</b><small>{% if LANGUAGE_CODE == "bn" %}মরসুম, জাত, সার ও রোগ-পোকার সহজ বাংলা গাইড{% else %}Seasons, varieties, fertiliser and pest guides{% endif %}</small></span><span aria-hidden="true">→</span></a>
+
   <section class="sec" id="products">
     <h2>{% trans "Our Products" %}</h2>
     <p class="sub">{% trans "Choose a pack size, then add it to your cart." %}</p>
