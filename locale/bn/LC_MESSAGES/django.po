@@ -381,8 +381,11 @@ msgstr "তথ্য গ্রহণ হয়নি"
 msgid "Organic farming, a promise of good health"
 msgstr "জৈব চাষ, সুস্থতার আশ্বাস"
 
-msgid "Soil boosters and farm inputs from GMM Distributors, delivered to your door."
-msgstr "জিএমএম ডিস্ট্রিবিউটর্সের মাটির পুষ্টি ও কৃষি সামগ্রী, পৌঁছে যাবে আপনার দরজায়।"
+msgid ""
+"Soil boosters and farm inputs from GMM Distributors, delivered to your door."
+msgstr ""
+"জিএমএম ডিস্ট্রিবিউটর্সের মাটির পুষ্টি ও কৃষি সামগ্রী, পৌঁছে যাবে আপনার "
+"দরজায়।"
 
 msgid "Shop now"
 msgstr "এখনই কিনুন"
@@ -443,3 +446,401 @@ msgstr "কোন পণ্য নেবেন বুঝতে পারছে�
 
 msgid "Talk to us. We are happy to help."
 msgstr "আমাদের সঙ্গে কথা বলুন, আমরা সাহায্য করব।"
+
+msgid "mobile number"
+msgstr "মোবাইল নম্বর"
+
+msgid "full name"
+msgstr "পুরো নাম"
+
+msgid "email"
+msgstr "ইমেইল"
+
+msgid "staff status"
+msgstr "স্টাফ স্ট্যাটাস"
+
+msgid "customer / user"
+msgstr "গ্রাহক / ব্যবহারকারী"
+
+msgid "customers / users"
+msgstr "গ্রাহক / ব্যবহারকারীগণ"
+
+msgid "Enter a valid 6-digit PIN code."
+msgstr "সঠিক ৬ সংখ্যার পিন কোড দিন।"
+
+msgid "house / street"
+msgstr "বাড়ি / রাস্তা"
+
+msgid "area / locality"
+msgstr "এলাকা / পাড়া"
+
+msgid "village / town"
+msgstr "গ্রাম / শহর"
+
+#, python-format
+msgid "You can save at most %(n)d addresses."
+msgstr "আপনি সর্বোচ্চ %(n)d টি ঠিকানা সংরক্ষণ করতে পারবেন।"
+
+msgid ""
+"Photo of the product label. Dosage and claims shown to customers must match "
+"it."
+msgstr ""
+"পণ্যের লেবেলের ছবি। গ্রাহককে দেখানো মাত্রা ও দাবি অবশ্যই এর সঙ্গে মিলতে হবে।"
+
+msgid "pack"
+msgstr "প্যাক"
+
+msgid "e.g. 1 kg, 5 kg, 10 kg"
+msgstr "যেমন ১ কেজি, ৫ কেজি, ১০ কেজি"
+
+msgid "Selling price per pack, including GST."
+msgstr "প্রতি প্যাকের বিক্রয়মূল্য (জিএসটি সহ)।"
+
+msgid "kg per acre"
+msgstr "কেজি প্রতি একর"
+
+msgid "g per tree"
+msgstr "গ্রাম প্রতি গাছ"
+
+msgid "Shown as 'as per product label'."
+msgstr "‘পণ্যের লেবেল অনুযায়ী’ হিসেবে দেখানো হবে।"
+
+msgid "Enter a valid 10-digit Indian mobile number."
+msgstr "সঠিক ১০ সংখ্যার ভারতীয় মোবাইল নম্বর দিন।"
+
+msgid "GST state code of the dispatch location (West Bengal = 19)."
+msgstr "ডিসপ্যাচ স্থানের জিএসটি স্টেট কোড (পশ্চিমবঙ্গ = ১৯)।"
+
+msgid ""
+"Delivery is free when the order subtotal reaches this value. Leave blank to "
+"disable."
+msgstr ""
+"অর্ডারের সাবটোটাল এই মানে পৌঁছালে ডেলিভারি বিনামূল্যে। বন্ধ করতে ফাঁকা "
+"রাখুন।"
+
+msgid "Highest order value allowed for COD. Leave blank for no limit."
+msgstr ""
+"ক্যাশ অন ডেলিভারির জন্য সর্বোচ্চ অর্ডার মূল্য। সীমা না চাইলে ফাঁকা রাখুন।"
+
+msgid "business settings"
+msgstr "ব্যবসার সেটিংস"
+
+msgid "GST included"
+msgstr "জিএসটি সহ"
+
+msgid "Set when staff placed the order on the customer's behalf."
+msgstr "কর্মী গ্রাহকের হয়ে অর্ডার দিলে এটি সেট হয়।"
+
+msgid "UTR / reference"
+msgstr "ইউটিআর / রেফারেন্স"
+
+msgid "12-digit UPI reference (UTR) or bank transfer reference."
+msgstr "১২ সংখ্যার ইউপিআই রেফারেন্স (ইউটিআর) বা ব্যাংক ট্রান্সফার রেফারেন্স।"
+
+msgid "Install GMM app"
+msgstr "GMM অ্যাপ ইনস্টল করুন"
+
+msgid "Order faster from your home screen."
+msgstr "হোম স্ক্রিন থেকে আরও দ্রুত অর্ডার করুন।"
+
+msgid "Install"
+msgstr "ইনস্টল"
+
+msgid "Contact"
+msgstr "যোগাযোগ"
+
+msgid "Contact GMM Distributors"
+msgstr "GMM ডিস্ট্রিবিউটর্সের সঙ্গে যোগাযোগ"
+
+msgid ""
+"Questions about products, dealership or bulk orders? Call, WhatsApp or write"
+" to us. We reply as soon as we can."
+msgstr ""
+"পণ্য, ডিলারশিপ বা বাল্ক অর্ডার নিয়ে প্রশ্ন আছে? ফোন, হোয়াটসঅ্যাপ বা লিখে "
+"জানান। আমরা যত দ্রুত সম্ভব উত্তর দেব।"
+
+msgid "Company details"
+msgstr "কোম্পানির তথ্য"
+
+msgid "Founder & Director"
+msgstr "প্রতিষ্ঠাতা ও ডিরেক্টর"
+
+msgid "Phone / WhatsApp"
+msgstr "ফোন / হোয়াটসঅ্যাপ"
+
+msgid "Email"
+msgstr "ইমেইল"
+
+msgid "Office"
+msgstr "অফিস"
+
+msgid "Scan to chat on WhatsApp"
+msgstr "হোয়াটসঅ্যাপে কথা বলতে স্ক্যান করুন"
+
+msgid "Send an enquiry"
+msgstr "অনুসন্ধান পাঠান"
+
+msgid "Fill this in and it opens WhatsApp with your message ready to send."
+msgstr "এটি পূরণ করলে আপনার বার্তাসহ হোয়াটসঅ্যাপ খুলবে, শুধু পাঠিয়ে দিন।"
+
+msgid "Full name"
+msgstr "পুরো নাম"
+
+msgid "Location"
+msgstr "এলাকা"
+
+msgid "Enquiry type"
+msgstr "অনুসন্ধানের ধরন"
+
+msgid "Product pricing"
+msgstr "পণ্যের দাম"
+
+msgid "Dealership / distribution"
+msgstr "ডিলারশিপ / ডিস্ট্রিবিউশন"
+
+msgid "Bulk order"
+msgstr "বাল্ক অর্ডার"
+
+msgid "General enquiry"
+msgstr "সাধারণ অনুসন্ধান"
+
+msgid "Message"
+msgstr "বার্তা"
+
+msgid "Send on WhatsApp"
+msgstr "হোয়াটসঅ্যাপে পাঠান"
+
+msgid "Digital visiting card"
+msgstr "ডিজিটাল ভিজিটিং কার্ড"
+
+msgid ""
+"Founder & Director Chikur Kumar Ray: download the front and back, or save "
+"the details to your phone."
+msgstr ""
+"প্রতিষ্ঠাতা ও ডিরেক্টর চিকুর কুমার রায়: সামনে ও পিছনের কার্ড ডাউনলোড করুন, "
+"অথবা তথ্য ফোনে সংরক্ষণ করুন।"
+
+msgid "View visiting card"
+msgstr "ভিজিটিং কার্ড দেখুন"
+
+msgid "To help us reply faster, mention"
+msgstr "দ্রুত উত্তর পেতে জানান:"
+
+msgid "Your name and location"
+msgstr "আপনার নাম ও এলাকা"
+
+msgid "The product you need and the approximate quantity"
+msgstr "কোন পণ্য লাগবে ও আনুমানিক পরিমাণ"
+
+msgid "Whether you want to become a dealer or distributor"
+msgstr "আপনি ডিলার বা ডিস্ট্রিবিউটর হতে চান কি না"
+
+msgid "Official page"
+msgstr "অফিসিয়াল পেজ"
+
+msgid "Leadership"
+msgstr "নেতৃত্ব"
+
+msgid ""
+"GMM Distributors is guided by its Board of Directors, with a focus on "
+"responsible business, customer service and long-term growth."
+msgstr ""
+"GMM ডিস্ট্রিবিউটর্স পরিচালিত হয় বোর্ড অফ ডিরেক্টরস দ্বারা, যাদের লক্ষ্য "
+"দায়িত্বশীল ব্যবসা, গ্রাহক সেবা ও দীর্ঘমেয়াদি বৃদ্ধি।"
+
+msgid "Board of Directors"
+msgstr "বোর্ড অফ ডিরেক্টরস"
+
+msgid "Director"
+msgstr "ডিরেক্টর"
+
+msgid ""
+"Official visiting card of Chikur Kumar Ray, Founder & Director. Tap an image"
+" to download it."
+msgstr ""
+"প্রতিষ্ঠাতা ও ডিরেক্টর চিকুর কুমার রায়ের অফিসিয়াল ভিজিটিং কার্ড। ডাউনলোড "
+"করতে ছবিতে ট্যাপ করুন।"
+
+msgid "Save to contacts"
+msgstr "কন্ট্যাক্টে সংরক্ষণ করুন"
+
+msgid "Our approach"
+msgstr "আমাদের পদ্ধতি"
+
+msgid ""
+"We build the business through professional management, customer focus, "
+"responsible practices and long-term relationships, while growing our product"
+" range and distribution network."
+msgstr ""
+"আমরা পেশাদার ব্যবস্থাপনা, গ্রাহকমুখিতা, দায়িত্বশীল চর্চা ও দীর্ঘমেয়াদি "
+"সম্পর্কের ভিত্তিতে ব্যবসা গড়ছি, পাশাপাশি পণ্যের তালিকা ও বিতরণ নেটওয়ার্ক "
+"বাড়িয়ে চলেছি।"
+
+msgid "Company at a glance"
+msgstr "এক নজরে কোম্পানি"
+
+msgid "Company"
+msgstr "কোম্পানি"
+
+msgid "Incorporated"
+msgstr "নিবন্ধিত হয়েছে"
+
+msgid "Registered with"
+msgstr "নিবন্ধনের সংস্থা"
+
+msgid "Active"
+msgstr "সক্রিয়"
+
+msgid "Want to partner with us?"
+msgstr "আমাদের সঙ্গে কাজ করতে চান?"
+
+msgid ""
+"Dealers, agronomists and cooperatives are welcome to reach out directly."
+msgstr "ডিলার, কৃষি-বিশেষজ্ঞ ও সমবায় সংস্থা সরাসরি যোগাযোগ করতে পারেন।"
+
+msgid "Contact the team"
+msgstr "দলের সঙ্গে যোগাযোগ করুন"
+
+msgid "Vision & Mission"
+msgstr "ভিশন ও মিশন"
+
+msgid "Vision, Mission & Values"
+msgstr "ভিশন, মিশন ও মূল্যবোধ"
+
+msgid ""
+"Responsible agriculture begins with dependable products, informed choices "
+"and strong relationships."
+msgstr ""
+"দায়িত্বশীল কৃষির শুরু নির্ভরযোগ্য পণ্য, সচেতন সিদ্ধান্ত ও দৃঢ় সম্পর্ক "
+"থেকে।"
+
+msgid "Our Vision"
+msgstr "আমাদের ভিশন"
+
+msgid ""
+"To build a trusted agricultural products business by providing quality-"
+"focused products, dependable service and practical solutions for farmers and"
+" agricultural businesses."
+msgstr ""
+"কৃষক ও কৃষি-ব্যবসায়ীদের জন্য মানসম্পন্ন পণ্য, নির্ভরযোগ্য সেবা ও "
+"বাস্তবসম্মত সমাধান দিয়ে একটি বিশ্বাসযোগ্য কৃষি-পণ্য ব্যবসা গড়ে তোলা।"
+
+msgid ""
+"We aim to grow through trust, responsible practices, customer satisfaction "
+"and long-term partnerships."
+msgstr ""
+"আমরা বিশ্বাস, দায়িত্বশীল চর্চা, গ্রাহক-সন্তুষ্টি ও দীর্ঘমেয়াদি অংশীদারির "
+"মাধ্যমে এগিয়ে যেতে চাই।"
+
+msgid "Our Mission"
+msgstr "আমাদের মিশন"
+
+msgid "Quality products. Responsible practices. Strong partnerships."
+msgstr "মানসম্পন্ন পণ্য। দায়িত্বশীল চর্চা। দৃঢ় অংশীদারি।"
+
+msgid "Develop a reliable agricultural product portfolio."
+msgstr "নির্ভরযোগ্য কৃষি-পণ্যের তালিকা গড়ে তোলা।"
+
+msgid "Serve farmers and agricultural businesses professionally."
+msgstr "কৃষক ও কৃষি-ব্যবসায়ীদের পেশাদারভাবে সেবা দেওয়া।"
+
+msgid "Build strong dealer and distribution relationships."
+msgstr "ডিলার ও বিতরণ-সম্পর্ক মজবুত করা।"
+
+msgid "Provide clear and responsible product information."
+msgstr "পণ্যের তথ্য স্পষ্ট ও দায়িত্বশীলভাবে জানানো।"
+
+msgid "Continuously improve our products, services and practices."
+msgstr "পণ্য, সেবা ও কাজের ধরন ক্রমাগত উন্নত করা।"
+
+msgid "Our Values"
+msgstr "আমাদের মূল্যবোধ"
+
+msgid "Integrity"
+msgstr "সততা"
+
+msgid "Honest business and clear communication, built on trust."
+msgstr "সৎ ব্যবসা ও স্পষ্ট যোগাযোগ, বিশ্বাসের ভিত্তিতে।"
+
+msgid "Quality"
+msgstr "মান"
+
+msgid ""
+"Dependable products and service, with care in sourcing, handling and "
+"distribution."
+msgstr "নির্ভরযোগ্য পণ্য ও সেবা — সংগ্রহ, রক্ষণাবেক্ষণ ও বিতরণে যত্ন সহ।"
+
+msgid "Responsibility"
+msgstr "দায়িত্ববোধ"
+
+msgid ""
+"We encourage product use as per labels, instructions and recommended "
+"practices."
+msgstr ""
+"আমরা লেবেল, নির্দেশনা ও প্রস্তাবিত পদ্ধতি মেনে পণ্য ব্যবহারে উৎসাহ দিই।"
+
+msgid "Customer Focus"
+msgstr "গ্রাহকমুখিতা"
+
+msgid "We listen to customers and partners and respond to what they need."
+msgstr "আমরা গ্রাহক ও অংশীদারদের কথা শুনি এবং তাঁদের প্রয়োজনে সাড়া দিই।"
+
+msgid "Partnership"
+msgstr "অংশীদারি"
+
+msgid ""
+"Sustainable growth comes from long relationships with farmers, dealers and "
+"distributors."
+msgstr ""
+"কৃষক, ডিলার ও ডিস্ট্রিবিউটরদের সঙ্গে দীর্ঘ সম্পর্ক থেকেই টেকসই বৃদ্ধি আসে।"
+
+msgid "Looking ahead"
+msgstr "সামনের পথ"
+
+msgid ""
+"From our base in Arambagh, Hooghly, we aim to expand our product range, "
+"strengthen our distribution network and serve farmers better."
+msgstr ""
+"আরামবাগ, হুগলি থেকে আমরা পণ্যের তালিকা বাড়াতে, বিতরণ নেটওয়ার্ক শক্তিশালী "
+"করতে এবং কৃষকদের আরও ভালো সেবা দিতে চাই।"
+
+msgid "View our products"
+msgstr "আমাদের পণ্য দেখুন"
+
+msgid "Contact us"
+msgstr "যোগাযোগ করুন"
+
+msgid ""
+"Organic farming, healthy living. Agricultural products supplier and organic "
+"manure distributor based in Arambagh, Hooghly, West Bengal."
+msgstr ""
+"জৈব চাষ, সুস্থ জীবন। আরামবাগ, হুগলি, পশ্চিমবঙ্গ-ভিত্তিক কৃষি-পণ্য সরবরাহকারী"
+" ও জৈব সার ডিস্ট্রিবিউটর।"
+
+msgid "Chat on WhatsApp"
+msgstr "হোয়াটসঅ্যাপে কথা বলুন"
+
+msgid "Registered office"
+msgstr "নিবন্ধিত অফিস"
+
+msgid "Reach us"
+msgstr "যোগাযোগের মাধ্যম"
+
+msgid "All rights reserved."
+msgstr "সর্বস্বত্ব সংরক্ষিত।"
+
+msgid "Designed & developed by"
+msgstr "ডিজাইন ও ডেভেলপমেন্ট:"
+
+msgid "You are offline"
+msgstr "আপনি অফলাইন"
+
+msgid ""
+"No internet connection. Check your network and try again. You can also call "
+"us to place an order."
+msgstr ""
+"ইন্টারনেট সংযোগ নেই। নেটওয়ার্ক দেখে আবার চেষ্টা করুন। অর্ডার দিতে আমাদের "
+"ফোনও করতে পারেন।"
+
+msgid "Try again"
+msgstr "আবার চেষ্টা করুন"
