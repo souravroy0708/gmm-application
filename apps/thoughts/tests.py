@@ -14,7 +14,7 @@ class ThoughtCardTests(TestCase):
         self.assertContains(r, 'id="thCanvas"')
         self.assertContains(r, "images/logo.jpg")
         self.assertContains(r, "js/thoughts.js")
-        self.assertContains(r, 'maxlength="160"')
+        self.assertContains(r, 'maxlength="500"')
 
     def test_disclaimer_in_english(self):
         self.client.cookies["django_language"] = "en"
@@ -62,3 +62,37 @@ class ThoughtHighlightTests(TestCase):
     def test_tab_present_on_other_pages_too(self):
         for name in ["pages:contact", "advisory:index", "shop:cart"]:
             self.assertContains(self.client.get(reverse(name)), 'class="th-tab ', msg_prefix=name)
+
+
+class ThoughtLengthTests(TestCase):
+    def test_limit_is_500_and_portrait_size_offered(self):
+        r = self.client.get(reverse("thoughts:create"))
+        self.assertContains(r, 'maxlength="500"')
+        self.assertContains(r, ">0</span>/500")
+        self.assertContains(r, 'data-size="portrait"')
+        self.assertContains(r, 'id="thWarnBtn"')
+
+
+class ThoughtFooterTests(TestCase):
+    """The card footer carries the director's photo and phone number as part of the template."""
+
+    def setUp(self):
+        self.url = reverse("thoughts:create")
+
+    def test_director_details_are_passed_to_the_card_script(self):
+        r = self.client.get(self.url)
+        self.assertContains(r, "images/chikur-kumar-ray.jpg")
+        self.assertContains(r, 'data-dir-phone="+91 90837 32101"')
+        self.assertContains(r, 'data-dir-name="Chikur Kumar Ray"')
+
+    def test_director_name_and_role_in_bengali(self):
+        self.client.cookies["django_language"] = "bn"
+        r = self.client.get(self.url)
+        self.assertContains(r, 'data-dir-name="চিকুর কুমার রায়"')
+        self.assertContains(r, 'data-dir-role="প্রতিষ্ঠাতা ও ডিরেক্টর"')
+
+    def test_footer_style_switch_is_offered(self):
+        r = self.client.get(self.url)
+        self.assertContains(r, 'id="thFoot"')
+        self.assertContains(r, 'data-foot="dir"')
+        self.assertContains(r, 'data-foot="brand"')

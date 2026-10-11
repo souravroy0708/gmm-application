@@ -34,3 +34,7 @@ html[data-theme="dark"] .th-note{color:var(--lite)}
 .th-hint{margin:6px 0 0;font-size:.86rem;color:var(--ink-2,#5f6c72)}
 .th-disc{margin:12px 0 0;padding:10px 12px;border-radius:12px;background:var(--bg-2);border:1px solid var(--line);font-size:.82rem;line-height:1.55;color:var(--ink-2,#5f6c72)}
 .th-disc strong{color:var(--text)}
+.th-warn{margin-top:12px;padding:9px 12px;border-radius:12px;background:rgba(242,193,78,.18);border:1px solid rgba(227,168,0,.5);font-size:.88rem;color:var(--text)}
+.th-warn[hidden]{display:none}
+.th-link{border:0;background:none;padding:0;margin-left:4px;font:700 .88rem "Hind Siliguri",sans-serif;color:var(--green);text-decoration:underline;cursor:pointer}
+html[data-theme="dark"] .th-link{color:var(--lite)}

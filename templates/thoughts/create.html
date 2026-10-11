@@ -1,15 +1,21 @@
 {% extends "base.html" %}
-{% load static i18n %}
+{% load static i18n shop_tags %}
 {% block title %}{% if LANGUAGE_CODE == "bn" %}ভাবনা কার্ড{% else %}Thought card{% endif %} | GMM{% endblock %}
 {% block head_extra %}<link rel="stylesheet" href="{% static 'css/thoughts.css' %}">{% endblock %}
 {% block content %}
 {% with bn=LANGUAGE_CODE %}
 <div class="th" id="thApp"
      data-logo="{% static 'images/logo.jpg' %}" data-site="{{ site_host }}"
+     data-dir-photo="{% static 'images/chikur-kumar-ray.jpg' %}"
+     data-dir-name="{% if bn == 'bn' %}চিকুর কুমার রায়{% else %}Chikur Kumar Ray{% endif %}"
+     data-dir-role="{% trans 'Founder & Director' %}"
+     data-dir-phone="{{ site.support_phone|default:'9083732101'|phone_pretty }}"
      data-brand="GMM Distributors" data-tag="{% trans 'Organic farming, healthy living' %}"
      data-m-saved="{% if bn == 'bn' %}✓ ছবি সেভ হয়েছে{% else %}✓ Image saved{% endif %}"
      data-m-copied="{% if bn == 'bn' %}✓ ক্যাপশন কপি হয়েছে{% else %}✓ Caption copied{% endif %}"
      data-m-fail="{% if bn == 'bn' %}কিছু একটা ভুল হয়েছে, আবার চেষ্টা করুন{% else %}Something went wrong, please try again{% endif %}"
+     data-m-portrait="{% if bn == 'bn' %}পোর্ট্রেট মাপ নিন{% else %}Use Portrait size{% endif %}"
+     data-m-story="{% if bn == 'bn' %}স্টোরি মাপ নিন{% else %}Use Story size{% endif %}"
      data-sample="{% if bn == 'bn' %}মাটির যত্ন নিলে মাটিও আমাদের যত্ন নেয়।{% else %}Take care of the soil, and the soil takes care of us.{% endif %}">
 
   <header class="th-head">
@@ -20,7 +26,7 @@
   <div class="th-grid">
     <section class="th-form" aria-label="{% if bn == 'bn' %}কার্ডের তথ্য{% else %}Card details{% endif %}">
       <label class="th-lab" for="thText">{% if bn == "bn" %}আপনার ভাবনা{% else %}Your thought{% endif %}</label>
-      <textarea id="thText" rows="5" maxlength="{{ max_chars }}" placeholder="{% if bn == 'bn' %}এখানে লিখুন বা পেস্ট করুন…{% else %}Type or paste here…{% endif %}"></textarea>
+      <textarea id="thText" rows="6" maxlength="{{ max_chars }}" placeholder="{% if bn == 'bn' %}এখানে লিখুন বা পেস্ট করুন…{% else %}Type or paste here…{% endif %}"></textarea>
       <div class="th-count"><span id="thCount">0</span>/{{ max_chars }}</div>
 
       <div class="th-two">
@@ -45,12 +51,20 @@
       <div class="th-lab" id="thSizeLab">{% if bn == "bn" %}মাপ{% else %}Size{% endif %}</div>
       <div class="th-chips" role="group" aria-labelledby="thSizeLab" id="thSizes">
         <button type="button" class="th-chip" data-size="square" aria-pressed="true">{% if bn == "bn" %}স্কয়ার (পোস্ট){% else %}Square (post){% endif %}</button>
+        <button type="button" class="th-chip" data-size="portrait" aria-pressed="false">{% if bn == "bn" %}পোর্ট্রেট (লম্বা লেখা){% else %}Portrait (long text){% endif %}</button>
         <button type="button" class="th-chip" data-size="story" aria-pressed="false">{% if bn == "bn" %}স্টোরি / স্ট্যাটাস{% else %}Story / Status{% endif %}</button>
+      </div>
+
+      <div class="th-lab" id="thFootLab">{% if bn == "bn" %}ফুটার{% else %}Footer{% endif %}</div>
+      <div class="th-chips" role="group" aria-labelledby="thFootLab" id="thFoot">
+        <button type="button" class="th-chip" data-foot="dir" aria-pressed="true">{% if bn == "bn" %}ডিরেক্টরের ছবি ও ফোন{% else %}Director photo &amp; phone{% endif %}</button>
+        <button type="button" class="th-chip" data-foot="brand" aria-pressed="false">{% if bn == "bn" %}শুধু লোগো{% else %}Logo only{% endif %}</button>
       </div>
     </section>
 
     <section class="th-out" aria-label="{% if bn == 'bn' %}কার্ডের প্রিভিউ{% else %}Card preview{% endif %}">
       <div class="th-stage"><canvas id="thCanvas" width="1080" height="1080" role="img" aria-label="{% if bn == 'bn' %}ভাবনা কার্ডের প্রিভিউ{% else %}Thought card preview{% endif %}"></canvas></div>
+      <div class="th-warn" id="thWarn" role="status" hidden><span>{% if bn == "bn" %}লেখা বড় হওয়ায় অক্ষর ছোট দেখাচ্ছে।{% else %}Long text, so the letters look small.{% endif %}</span> <button type="button" class="th-link" id="thWarnBtn"></button></div>
       <div class="th-act">
         <button type="button" class="th-btn main" id="thDownload" disabled>⬇ {% if bn == "bn" %}ছবি ডাউনলোড{% else %}Download image{% endif %}</button>
         <button type="button" class="th-btn wa" id="thShare" hidden disabled>📤 {% if bn == "bn" %}শেয়ার করুন{% else %}Share{% endif %}</button>

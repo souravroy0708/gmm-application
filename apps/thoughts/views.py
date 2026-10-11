@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-MAX_THOUGHT_CHARS = 160
+MAX_THOUGHT_CHARS = 500
 
 
 def create(request):
