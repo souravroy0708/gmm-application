@@ -1,0 +1,52 @@
+/* GMM theme layer: dark tokens + toggle button. Load LAST. Screen only, print stays light. */
+.themebtn{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--green);background:transparent;color:var(--green);display:grid;place-items:center;cursor:pointer;padding:0;flex:none;transition:background .2s,color .2s,border-color .2s}
+.themebtn:hover{background:var(--bg-2)}
+.themebtn:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.themebtn .ic{width:20px;height:20px}
+.themebtn .i-sun{display:none}
+html[data-theme="dark"] .themebtn .i-sun{display:block}
+html[data-theme="dark"] .themebtn .i-moon{display:none}
+body.home header.top:not(.scrolled) .themebtn{color:#fff;border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.14)}
+
+@media screen{
+html[data-theme="dark"]{color-scheme:dark;
+  --bg:#0D1410;--bg-2:#1B271F;--white:#151F19;--text:#E6EEE8;--ink-2:#9DB0A4;--line:#2B3C32;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);--lite:#7FD6A0}
+html[data-theme="dark"] body{background:var(--bg);color:var(--text)}
+html[data-theme="dark"] h1,html[data-theme="dark"] h2,html[data-theme="dark"] h3{color:#EAF4EC}
+html[data-theme="dark"] a{color:var(--lite)}
+html[data-theme="dark"] .muted,html[data-theme="dark"] .helptext,html[data-theme="dark"] .en,html[data-theme="dark"] .steps small,html[data-theme="dark"] nav.tabs a{color:var(--ink-2)}
+html[data-theme="dark"] .price,html[data-theme="dark"] .bigprice{color:var(--lite)}
+/* header + nav */
+html[data-theme="dark"] header.top{background:rgba(21,31,25,.9)}
+html[data-theme="dark"] .brand,html[data-theme="dark"] .brand small{color:#EAF4EC}
+html[data-theme="dark"] .brand img{box-shadow:0 0 0 2px var(--white),0 0 0 3px var(--line)}
+html[data-theme="dark"] .langbtn,html[data-theme="dark"] .themebtn{background:transparent;color:var(--lite);border-color:var(--lite)}
+html[data-theme="dark"] body.home header.top:not(.scrolled) .langbtn,html[data-theme="dark"] body.home header.top:not(.scrolled) .themebtn{color:#fff;border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.14)}
+html[data-theme="dark"] body.home header.top:not(.scrolled) .brand{color:#fff}
+html[data-theme="dark"] nav.tabs{background:rgba(21,31,25,.94);border-color:var(--line)}
+html[data-theme="dark"] nav.tabs a.on{background:var(--bg-2);color:var(--lite)}
+/* surfaces */
+html[data-theme="dark"] .card,html[data-theme="dark"] .trust li,html[data-theme="dark"] .pc,html[data-theme="dark"] .how li,html[data-theme="dark"] .steps div,html[data-theme="dark"] .pcard{background:var(--white);border-color:var(--line)}
+html[data-theme="dark"] .trust .ico{background:var(--bg-2);color:var(--lite)}
+html[data-theme="dark"] .pack-opt>span,html[data-theme="dark"] .qty,html[data-theme="dark"] .choice{background:var(--white);border-color:var(--line);color:var(--text)}
+html[data-theme="dark"] .pack-opt input:checked+span,html[data-theme="dark"] .choice:has(input:checked){background:#17301F;border-color:var(--lite)}
+html[data-theme="dark"] .pc-media,html[data-theme="dark"] .pcard .pic,html[data-theme="dark"] .thumb{background:#F4F6F1}
+/* forms */
+html[data-theme="dark"] input,html[data-theme="dark"] select,html[data-theme="dark"] textarea{background:var(--white);color:var(--text);border-color:var(--line)}
+html[data-theme="dark"] ::placeholder{color:#7C8F84}
+/* messages + status */
+html[data-theme="dark"] .msg{background:#17301F;border-color:#25472F;color:#CFE9D6}
+html[data-theme="dark"] .msg.error,html[data-theme="dark"] .soldout,html[data-theme="dark"] .status.CANCELLED{background:#3A1C1C;border-color:#5A2A2A;color:#FFB4AB}
+html[data-theme="dark"] .msg.warning,html[data-theme="dark"] .status.PLACED{background:#3A2F12;border-color:#5A4A1C;color:#F6D58A}
+html[data-theme="dark"] .status.DELIVERED,html[data-theme="dark"] .status.CONFIRMED{background:#17301F;color:#9FE3B5}
+/* company pages + footer */
+html[data-theme="dark"] .pg-hero{background:#13301F;border:1px solid var(--line)}
+html[data-theme="dark"] .pg-btn.line{color:var(--lite);border-color:var(--lite)}
+html[data-theme="dark"] .pg-btn:not(.alt):not(.line){background:#2A8247;color:#fff}
+html[data-theme="dark"] .pg-form input,html[data-theme="dark"] .pg-form select,html[data-theme="dark"] .pg-form textarea{background:var(--bg);}
+html[data-theme="dark"] .pg-qr{background:#fff;padding:6px}
+html[data-theme="dark"] .gf{background:#08100B;border-top:1px solid var(--line)}
+html[data-theme="dark"] .gf a{color:#E6EEE8}
+}
+@media (prefers-reduced-motion:no-preference){body{transition:background-color .25s,color .25s}}

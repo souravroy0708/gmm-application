@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0F2F1E">
+  <meta name="color-scheme" content="light dark">
+  <script>(function(){try{var t=localStorage.getItem("gmm-theme");if(t!=="dark"&&t!=="light"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t);if(t==="dark"){document.querySelector("meta[name=theme-color]").setAttribute("content","#0D1410")}}catch(e){}})();</script>
   <title>{% block title %}GMM Distributors{% endblock %}</title>
   <link rel="icon" href="{% static 'images/logo.jpg' %}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,6 +14,8 @@
   <link rel="stylesheet" href="{% static 'css/app.css' %}">
   <link rel="stylesheet" href="{% static 'css/premium.css' %}">
   <link rel="stylesheet" href="{% static 'css/pages.css' %}">
+  <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+  {% block head_extra %}{% endblock %}
 </head>
 <body class="{% block bodyclass %}{% endblock %}">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -24,6 +28,8 @@
   <symbol id="i-truck" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.7a1 1 0 0 0-.2-.6l-3.5-4.4A1 1 0 0 0 17.5 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
   <symbol id="i-rupee" viewBox="0 0 24 24"><path d="M6 3h12"/><path d="M6 8h12"/><path d="m6 13 8.5 8"/><path d="M6 13h3"/><path d="M9 13c6.7 0 6.7-10 0-10"/></symbol>
   <symbol id="i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
 </defs></svg>
 
 <header class="top">
@@ -32,6 +38,7 @@
       <img src="{% static 'images/logo.jpg' %}" alt="GMM logo">
       <span>GMM Distributors<small>{% trans "Organic farming, healthy living" %}</small></span>
     </a>
+    <button type="button" class="themebtn" id="themeToggle" aria-label="{% trans 'Switch theme' %}" aria-pressed="false" title="{% trans 'Switch theme' %}"><svg class="ic i-moon"><use href="#i-moon"/></svg><svg class="ic i-sun"><use href="#i-sun"/></svg></button>
     <form method="post" action="{% url 'set_language' %}" class="inline">{% csrf_token %}
       <input type="hidden" name="next" value="{{ request.get_full_path }}">
       {% if LANGUAGE_CODE == "bn" %}<button class="langbtn" name="language" value="en" type="submit">English</button>
@@ -66,6 +73,14 @@
 </nav>
 {% endwith %}
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){var h=document.documentElement,b=document.getElementById("themeToggle"),m=document.querySelector("meta[name=theme-color]");
+function apply(t,save){h.setAttribute("data-theme",t);b.setAttribute("aria-pressed",t==="dark");m.setAttribute("content",t==="dark"?"#0D1410":"#0F2F1E");if(save){try{localStorage.setItem("gmm-theme",t)}catch(e){}}}
+apply(h.getAttribute("data-theme")||"light",false);
+b.addEventListener("click",function(){apply(h.getAttribute("data-theme")==="dark"?"light":"dark",true)});
+try{matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(e){if(!localStorage.getItem("gmm-theme"))apply(e.matches?"dark":"light",false)})}catch(e){}
+})();
+</script>
 <script src="{% static 'js/app.js' %}" defer></script>
 </body>
 </html>

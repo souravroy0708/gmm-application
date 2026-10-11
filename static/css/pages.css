@@ -44,3 +44,9 @@
 .pg-form label{display:block;font-weight:600;margin:10px 0 4px}
 .pg-form input,.pg-form select,.pg-form textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff}
 .pg-form input:focus,.pg-form select:focus,.pg-form textarea:focus,.pg-btn:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+
+.pg-link{font-size:.88rem;margin:6px 0 20px;overflow-wrap:anywhere}
+.pg-link a{text-decoration:underline;text-underline-offset:3px}
+#visiting-card{scroll-margin-top:84px}
+.pg-vc{width:100%;height:auto;border-radius:12px;border:1px solid var(--line);display:block}
+.pg-btn.line{border-color:var(--green)}

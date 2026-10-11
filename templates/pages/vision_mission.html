@@ -1,5 +1,6 @@
 {% extends "base.html" %}{% load i18n %}
 {% block title %}{% trans "Vision & Mission" %} | GMM Distributors{% endblock %}
+{% block head_extra %}<link rel="canonical" href="https://gmmdistributors.xyz/vision-mission">{% endblock %}
 {% block mainclass %}pg{% endblock %}
 {% block content %}
 <section class="pg-hero">
@@ -42,4 +43,6 @@
   <a class="pg-btn" href="{% url 'shop:products' %}">{% trans "View our products" %}</a>
   <a class="pg-btn line" href="{% url 'pages:contact' %}">{% trans "Contact us" %}</a>
 </section>
+<p class="pg-link muted">{% trans "Official page" %}: <a href="https://gmmdistributors.xyz/vision-mission">https://gmmdistributors.xyz/vision-mission</a></p>
+
 {% endblock %}

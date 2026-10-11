@@ -1,5 +1,6 @@
 {% extends "base.html" %}{% load i18n static %}
 {% block title %}{% trans "Leadership" %} | GMM Distributors{% endblock %}
+{% block head_extra %}<link rel="canonical" href="https://gmmdistributors.xyz/leadership">{% endblock %}
 {% block mainclass %}pg{% endblock %}
 {% block content %}
 <section class="pg-hero">
@@ -19,6 +20,17 @@
       <div><h3>Bina Debnath</h3><p>{% trans "Director" %}</p></div>
     </article>
   </div>
+</section>
+
+<section class="pg-sec pg-card" id="visiting-card" aria-labelledby="vc-h">
+  <h2 id="vc-h">{% trans "Digital visiting card" %}</h2>
+  <p>{% trans "Official visiting card of Chikur Kumar Ray, Founder & Director. Tap an image to download it." %}</p>
+  <div class="pg-grid c2">
+    <a href="{% static 'images/chikur-ray-visiting-card-front.jpg' %}" download><img class="pg-vc" src="{% static 'images/chikur-ray-visiting-card-front.jpg' %}" alt="Visiting card, front" loading="lazy"></a>
+    <a href="{% static 'images/chikur-ray-visiting-card-back.jpg' %}" download><img class="pg-vc" src="{% static 'images/chikur-ray-visiting-card-back.jpg' %}" alt="Visiting card, back" loading="lazy"></a>
+  </div>
+  <p style="margin-top:12px"><a class="pg-btn" href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AFN:Chikur Kumar Ray%0AN:Ray;Chikur Kumar;;;%0AORG:GMM Distributors Private Limited%0ATITLE:Founder %26 Director%0ATEL;TYPE=CELL:+919083732101%0AEMAIL:ray.chikur@gmail.com%0AADR;TYPE=WORK:;;Nirmala Bhawan\, Fansi Bagan\, Ward No. 13;Arambagh;Hooghly;712601;India%0AURL:https://gmmdistributors.xyz%0AEND:VCARD" download="Chikur-Kumar-Ray.vcf">{% trans "Save to contacts" %}</a>
+  <a class="pg-btn line" href="{% url 'pages:contact' %}">{% trans "Contact" %}</a></p>
 </section>
 
 <section class="pg-sec pg-card">
@@ -43,4 +55,6 @@
   <p>{% trans "Dealers, agronomists and cooperatives are welcome to reach out directly." %}</p>
   <a class="pg-btn alt" href="{% url 'pages:contact' %}">{% trans "Contact the team" %}</a>
 </section>
+<p class="pg-link muted">{% trans "Official page" %}: <a href="https://gmmdistributors.xyz/leadership">https://gmmdistributors.xyz/leadership</a></p>
+
 {% endblock %}

@@ -1,5 +1,6 @@
 {% extends "base.html" %}{% load i18n static %}
 {% block title %}{% trans "Contact" %} | GMM Distributors{% endblock %}
+{% block head_extra %}<link rel="canonical" href="https://gmmdistributors.xyz/contact">{% endblock %}
 {% block mainclass %}pg{% endblock %}
 {% block content %}
 {% with phone=site.support_phone|default:"9083732101" wa=site.whatsapp_number|default:"9083732101" mail=site.support_email|default:"ray.chikur@gmail.com" %}
@@ -46,6 +47,12 @@
 </section>
 
 <section class="pg-sec pg-card">
+  <h2>{% trans "Digital visiting card" %}</h2>
+  <p>{% trans "Founder & Director Chikur Kumar Ray: download the front and back, or save the details to your phone." %}</p>
+  <a class="pg-btn alt" href="https://gmmdistributors.xyz/leadership#visiting-card">{% trans "View visiting card" %}</a>
+</section>
+
+<section class="pg-sec pg-card">
   <h2>{% trans "To help us reply faster, mention" %}</h2>
   <ul class="pg-list">
     <li>{% trans "Your name and location" %}</li>
@@ -54,6 +61,7 @@
   </ul>
 </section>
 
+<p class="pg-link muted">{% trans "Official page" %}: <a href="https://gmmdistributors.xyz/contact">https://gmmdistributors.xyz/contact</a></p>
 <script>
 document.getElementById('enq').addEventListener('submit',function(e){
   e.preventDefault();
