@@ -13,7 +13,7 @@
       <a href="{% url 'pages:contact' %}">{% trans "Contact" %}</a>
       <a href="{% url 'advisory:index' %}">{% if LANGUAGE_CODE == "bn" %}কৃষি পরামর্শ{% else %}Krishi Paramarsha (Advice){% endif %}</a>
       <a href="{% url 'shop:products' %}">{% trans "Shop" %}</a>
-      {% if user.is_staff %}<a href="{% url 'thoughts:create' %}">{% if LANGUAGE_CODE == "bn" %}ভাবনা কার্ড বানান{% else %}Make a thought card{% endif %}</a>{% endif %}
+      <a href="{% url 'thoughts:create' %}">{% if LANGUAGE_CODE == "bn" %}ভাবনা কার্ড বানান{% else %}Make a thought card{% endif %}</a>
     </nav>
     <div class="gf-col">
       <h3>{% trans "Registered office" %}</h3>

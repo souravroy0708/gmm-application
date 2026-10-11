@@ -51,6 +51,7 @@
   </ul>
 
   <a class="kp-promo" href="{% url 'advisory:index' %}"><span class="kp-promo-ic">🌾</span><span><b>{% if LANGUAGE_CODE == "bn" %}কৃষি পরামর্শ — ধান, আলু, পাট ও আরও{% else %}Krishi Paramarsha — crop advice{% endif %}</b><small>{% if LANGUAGE_CODE == "bn" %}মরসুম, জাত, সার ও রোগ-পোকার সহজ বাংলা গাইড{% else %}Seasons, varieties, fertiliser and pest guides{% endif %}</small></span><span aria-hidden="true">→</span></a>
+  <a class="kp-promo th-promo" href="{% url 'thoughts:create' %}"><span class="kp-promo-ic">💬</span><span><b>{% if LANGUAGE_CODE == "bn" %}আপনার ভাবনা, GMM কার্ডে{% else %}Your thought, on a GMM card{% endif %}</b><small>{% if LANGUAGE_CODE == "bn" %}এক লাইন লিখুন, লোগো-সহ কার্ড বানিয়ে সোশ্যাল মিডিয়ায় শেয়ার করুন{% else %}Write a line, get a branded card and share it on social media{% endif %}</small></span><span class="th-cta">{% if LANGUAGE_CODE == "bn" %}কার্ড বানান{% else %}Create now{% endif %}</span></a>
 
   <section class="sec" id="products">
     <h2>{% trans "Our Products" %}</h2>

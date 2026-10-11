@@ -32,3 +32,5 @@ html[data-theme="dark"] .th-btn.line{color:var(--lite);border-color:var(--lite)}
 .th-note{min-height:1.4em;margin:10px 0 0;font-weight:700;color:var(--green)}
 html[data-theme="dark"] .th-note{color:var(--lite)}
 .th-hint{margin:6px 0 0;font-size:.86rem;color:var(--ink-2,#5f6c72)}
+.th-disc{margin:12px 0 0;padding:10px 12px;border-radius:12px;background:var(--bg-2);border:1px solid var(--line);font-size:.82rem;line-height:1.55;color:var(--ink-2,#5f6c72)}
+.th-disc strong{color:var(--text)}

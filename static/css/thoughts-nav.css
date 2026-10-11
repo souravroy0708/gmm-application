@@ -1,0 +1,35 @@
+/* Highlighted entry points for the thought-card maker (bottom bar, home banner, desktop header). */
+
+/* bottom bar: six items now, the Thoughts button sits in the middle and is raised */
+nav.tabs{width:min(480px,calc(100% - 16px))}
+@media (max-width:400px){nav.tabs a{font-size:.68rem}}
+nav.tabs a.th-tab{color:var(--green);font-weight:800}
+nav.tabs a.th-tab.on{background:transparent;color:var(--green)}
+html[data-theme="dark"] nav.tabs a.th-tab,html[data-theme="dark"] nav.tabs a.th-tab.on{color:var(--lite)}
+.th-ic{position:relative;display:grid;place-items:center;width:48px;height:48px;margin-top:-28px;border-radius:50%;
+  background:linear-gradient(135deg,#F9D84A,#E3A800);color:#2A1B00;
+  box-shadow:0 8px 18px rgba(227,168,0,.45),0 0 0 4px var(--white);transition:transform .2s}
+html[data-theme="dark"] .th-ic{box-shadow:0 8px 18px rgba(227,168,0,.35),0 0 0 4px #151F19}
+nav.tabs a.th-tab .ic{width:24px;height:24px;stroke-width:2.2}
+nav.tabs a.th-tab:hover .th-ic,nav.tabs a.th-tab:focus-visible .th-ic{transform:translateY(-2px) scale(1.05)}
+.th-ic::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(242,193,78,.75);animation:thPulse 2.4s ease-out infinite;pointer-events:none}
+nav.tabs a.th-tab.on .th-ic::after{animation:none;border-color:var(--green)}
+@keyframes thPulse{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.55);opacity:0}}
+@media (prefers-reduced-motion:reduce){.th-ic::after{animation:none}}
+
+/* home page banner (sits under the Krishi advice banner) */
+.kp-promo.th-promo{background:linear-gradient(135deg,#F9D84A,#E3A800);color:#2A1B00;border:1px solid rgba(42,27,0,.12)}
+.kp-promo.th-promo b{color:#2A1B00}
+.kp-promo.th-promo small{color:rgba(42,27,0,.78)}
+.kp-promo.th-promo .kp-promo-ic{background:rgba(42,27,0,.12)}
+.th-cta{flex:none;background:#0F2F1E;color:#fff;font-weight:700;font-size:.9rem;padding:8px 14px;border-radius:99px;white-space:nowrap}
+.kp-promo.th-promo:hover .th-cta{background:#1F6B3A}
+
+/* desktop header pill */
+.thbtn{display:none}
+@media (min-width:700px){
+  .thbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:99px;text-decoration:none;font-weight:700;font-size:.9rem;
+    background:linear-gradient(135deg,#F9D84A,#E3A800);color:#2A1B00;box-shadow:0 4px 12px rgba(227,168,0,.35);transition:transform .2s}
+  .thbtn:hover{transform:translateY(-1px)}
+  .thbtn .ic{width:18px;height:18px}
+}
