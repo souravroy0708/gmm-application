@@ -1,0 +1,45 @@
+{% extends "base.html" %}{% load i18n %}
+{% block title %}{% trans "Vision & Mission" %} | GMM Distributors{% endblock %}
+{% block mainclass %}pg{% endblock %}
+{% block content %}
+<section class="pg-hero">
+  <h1>{% trans "Vision, Mission & Values" %}</h1>
+  <p>{% trans "Responsible agriculture begins with dependable products, informed choices and strong relationships." %}</p>
+</section>
+
+<section class="pg-sec pg-card">
+  <h2>{% trans "Our Vision" %}</h2>
+  <p>{% trans "To build a trusted agricultural products business by providing quality-focused products, dependable service and practical solutions for farmers and agricultural businesses." %}</p>
+  <p>{% trans "We aim to grow through trust, responsible practices, customer satisfaction and long-term partnerships." %}</p>
+</section>
+
+<section class="pg-sec pg-card">
+  <h2>{% trans "Our Mission" %}</h2>
+  <p>{% trans "Quality products. Responsible practices. Strong partnerships." %}</p>
+  <ul class="pg-list">
+    <li>{% trans "Develop a reliable agricultural product portfolio." %}</li>
+    <li>{% trans "Serve farmers and agricultural businesses professionally." %}</li>
+    <li>{% trans "Build strong dealer and distribution relationships." %}</li>
+    <li>{% trans "Provide clear and responsible product information." %}</li>
+    <li>{% trans "Continuously improve our products, services and practices." %}</li>
+  </ul>
+</section>
+
+<section class="pg-sec">
+  <h2>{% trans "Our Values" %}</h2>
+  <div class="pg-grid c2">
+    <div class="pg-card pg-val"><h3>{% trans "Integrity" %}</h3><p>{% trans "Honest business and clear communication, built on trust." %}</p></div>
+    <div class="pg-card pg-val"><h3>{% trans "Quality" %}</h3><p>{% trans "Dependable products and service, with care in sourcing, handling and distribution." %}</p></div>
+    <div class="pg-card pg-val"><h3>{% trans "Responsibility" %}</h3><p>{% trans "We encourage product use as per labels, instructions and recommended practices." %}</p></div>
+    <div class="pg-card pg-val"><h3>{% trans "Customer Focus" %}</h3><p>{% trans "We listen to customers and partners and respond to what they need." %}</p></div>
+    <div class="pg-card pg-val"><h3>{% trans "Partnership" %}</h3><p>{% trans "Sustainable growth comes from long relationships with farmers, dealers and distributors." %}</p></div>
+  </div>
+</section>
+
+<section class="pg-sec pg-card">
+  <h2>{% trans "Looking ahead" %}</h2>
+  <p>{% trans "From our base in Arambagh, Hooghly, we aim to expand our product range, strengthen our distribution network and serve farmers better." %}</p>
+  <a class="pg-btn" href="{% url 'shop:products' %}">{% trans "View our products" %}</a>
+  <a class="pg-btn line" href="{% url 'pages:contact' %}">{% trans "Contact us" %}</a>
+</section>
+{% endblock %}

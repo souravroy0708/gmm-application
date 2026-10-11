@@ -1,0 +1,46 @@
+/* GMM company pages + footer. Load after premium.css. */
+.gf{background:var(--forest);color:#d7e4da;margin-top:40px;padding:36px 0 0;font-size:.95rem}
+.gf a{color:#fff;text-decoration:none;display:block;padding:4px 0}
+.gf a:hover{color:var(--sun)}
+.gf-grid{display:grid;gap:26px;grid-template-columns:1fr}
+.gf h3{font-size:1rem;color:#fff;margin:0 0 8px}
+.gf-name{font:700 1.15rem "Anek Bangla",sans-serif;color:#fff}
+.gf p{margin:.5rem 0;line-height:1.55}
+.gf address{font-style:normal;line-height:1.6}
+.gf-small{font-size:.85rem;opacity:.8}
+.gf-wa{display:inline-block!important;margin-top:6px;background:var(--sun);color:#1b1200!important;font-weight:700;padding:9px 16px!important;border-radius:99px}
+.gf-base{border-top:1px solid rgba(255,255,255,.14);margin-top:26px;padding-top:16px;padding-bottom:18px;font-size:.82rem;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+.gf-copy{opacity:.75}
+.gf-credit{display:inline-flex;align-items:center;gap:9px;color:#d7e4da;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);padding:5px 14px 5px 5px;border-radius:99px}
+.gf-credit b{color:#fff;font-weight:700;letter-spacing:.02em}
+.gf-mark{width:24px;height:24px;border-radius:50%;background:var(--sun);color:#1b1200;font:800 .8rem/24px "Anek Bangla",sans-serif;font-style:normal;text-align:center;flex:none}
+@media(min-width:760px){.gf-base{flex-direction:row;justify-content:space-between;text-align:left}}
+@media(min-width:760px){.gf-grid{grid-template-columns:1.5fr 1fr 1.3fr 1.2fr}}
+
+.pg{max-width:880px;margin:0 auto;padding:22px 16px 8px}
+.pg-hero{background:var(--forest);color:#fff;border-radius:var(--r);padding:28px 22px;margin-bottom:22px}
+.pg-hero h1{color:#fff;font-size:1.7rem;margin:0 0 8px}
+.pg-hero p{margin:0;max-width:60ch;color:#d7e4da;line-height:1.6}
+.pg h2{font-size:1.25rem;margin:0 0 10px}
+.pg-sec{margin:0 0 26px}
+.pg-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--shadow)}
+.pg-grid{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:640px){.pg-grid.c2{grid-template-columns:1fr 1fr}.pg-grid.c3{grid-template-columns:repeat(3,1fr)}}
+.pg-dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0}
+.pg-dl dt{color:var(--ink-2);font-size:.88rem}
+.pg-dl dd{margin:0;font-weight:500;overflow-wrap:anywhere}
+.pg-btn{display:inline-block;background:var(--green);color:#fff;font-weight:700;text-decoration:none;padding:12px 20px;border-radius:99px;margin:4px 8px 4px 0}
+.pg-btn.alt{background:var(--sun);color:#1b1200}
+.pg-btn.line{background:transparent;color:var(--green);border:2px solid var(--green)}
+.pg-list{margin:8px 0 0;padding-left:1.1rem;line-height:1.7}
+.pg-person{display:flex;gap:14px;align-items:center}
+.pg-person img{width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid var(--sun);flex:none}
+.pg-person h3{margin:0;font-size:1.1rem}
+.pg-person p{margin:2px 0 0;color:var(--ink-2);font-size:.9rem;line-height:1.5}
+.pg-val{border-left:4px solid var(--sun)}
+.pg-val h3{margin:0 0 4px;font-size:1.05rem}
+.pg-val p{margin:0;color:var(--ink-2);line-height:1.55}
+.pg-qr{max-width:180px;width:100%;border-radius:12px;border:1px solid var(--line)}
+.pg-form label{display:block;font-weight:600;margin:10px 0 4px}
+.pg-form input,.pg-form select,.pg-form textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff}
+.pg-form input:focus,.pg-form select:focus,.pg-form textarea:focus,.pg-btn:focus-visible{outline:3px solid var(--sun);outline-offset:2px}

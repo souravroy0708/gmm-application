@@ -1,0 +1,46 @@
+{% extends "base.html" %}{% load i18n static %}
+{% block title %}{% trans "Leadership" %} | GMM Distributors{% endblock %}
+{% block mainclass %}pg{% endblock %}
+{% block content %}
+<section class="pg-hero">
+  <h1>{% trans "Leadership" %}</h1>
+  <p>{% trans "GMM Distributors is guided by its Board of Directors, with a focus on responsible business, customer service and long-term growth." %}</p>
+</section>
+
+<section class="pg-sec">
+  <h2>{% trans "Board of Directors" %}</h2>
+  <div class="pg-grid c2">
+    <article class="pg-card pg-person">
+      <img src="{% static 'images/chikur-kumar-ray.jpg' %}" alt="Chikur Kumar Ray" width="84" height="84" loading="lazy">
+      <div><h3>Chikur Kumar Ray</h3><p>{% trans "Founder & Director" %}</p></div>
+    </article>
+    <article class="pg-card pg-person">
+      <img src="{% static 'images/bina-debnath.jpg' %}" alt="Bina Debnath" width="84" height="84" loading="lazy">
+      <div><h3>Bina Debnath</h3><p>{% trans "Director" %}</p></div>
+    </article>
+  </div>
+</section>
+
+<section class="pg-sec pg-card">
+  <h2>{% trans "Our approach" %}</h2>
+  <p>{% trans "We build the business through professional management, customer focus, responsible practices and long-term relationships, while growing our product range and distribution network." %}</p>
+</section>
+
+<section class="pg-sec pg-card">
+  <h2>{% trans "Company at a glance" %}</h2>
+  <dl class="pg-dl">
+    <dt>{% trans "Company" %}</dt><dd>GMM Distributors Private Limited</dd>
+    <dt>CIN</dt><dd>{{ site.cin|default:"U24299WB2020PTC240755" }}</dd>
+    <dt>{% trans "Incorporated" %}</dt><dd>23 October 2020</dd>
+    <dt>{% trans "Registered with" %}</dt><dd>Registrar of Companies, Kolkata</dd>
+    <dt>{% trans "Status" %}</dt><dd>{% trans "Active" %}</dd>
+    <dt>{% trans "Office" %}</dt><dd>Nirmala Bhawan, Fansi Bagan, Ward No. 13, Arambagh, Hooghly, West Bengal – 712601</dd>
+  </dl>
+</section>
+
+<section class="pg-sec pg-card">
+  <h2>{% trans "Want to partner with us?" %}</h2>
+  <p>{% trans "Dealers, agronomists and cooperatives are welcome to reach out directly." %}</p>
+  <a class="pg-btn alt" href="{% url 'pages:contact' %}">{% trans "Contact the team" %}</a>
+</section>
+{% endblock %}

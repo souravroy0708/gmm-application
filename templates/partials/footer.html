@@ -1,0 +1,31 @@
+{% load i18n %}
+<footer class="gf">
+  <div class="container gf-grid">
+    <div class="gf-about">
+      <strong class="gf-name">GMM Distributors Pvt. Ltd.</strong>
+      <p>{% trans "Organic farming, healthy living. Agricultural products supplier and organic manure distributor based in Arambagh, Hooghly, West Bengal." %}</p>
+      {% if site.whatsapp_number %}<a class="gf-wa" href="https://wa.me/91{{ site.whatsapp_number }}" target="_blank" rel="noopener">{% trans "Chat on WhatsApp" %}</a>{% endif %}
+    </div>
+    <nav class="gf-col" aria-label="{% trans 'Company' %}">
+      <h3>{% trans "Company" %}</h3>
+      <a href="{% url 'pages:vision_mission' %}">{% trans "Vision & Mission" %}</a>
+      <a href="{% url 'pages:leadership' %}">{% trans "Leadership" %}</a>
+      <a href="{% url 'pages:contact' %}">{% trans "Contact" %}</a>
+      <a href="{% url 'shop:products' %}">{% trans "Shop" %}</a>
+    </nav>
+    <div class="gf-col">
+      <h3>{% trans "Registered office" %}</h3>
+      <address>Nirmala Bhawan, Fansi Bagan, Ward No. 13<br>Arambagh, Hooghly<br>West Bengal – 712601, India</address>
+      <p class="gf-small">CIN: {{ site.cin|default:"U24299WB2020PTC240755" }}</p>
+    </div>
+    <div class="gf-col">
+      <h3>{% trans "Reach us" %}</h3>
+      <a href="tel:+91{{ site.support_phone|default:'9083732101' }}">{{ site.support_phone|default:"9083732101" }}</a>
+      <a href="mailto:{{ site.support_email|default:'ray.chikur@gmail.com' }}">{{ site.support_email|default:"ray.chikur@gmail.com" }}</a>
+    </div>
+  </div>
+  <div class="container gf-base">
+    <span class="gf-copy">© 2026 GMM Distributors Private Limited. {% trans "All rights reserved." %}</span>
+    <span class="gf-credit"><i class="gf-mark" aria-hidden="true">S</i>{% trans "Designed & developed by" %} <b>Sourav</b></span>
+  </div>
+</footer>
