@@ -1,0 +1,21 @@
+{% load i18n static %}<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% trans "You are offline" %} | GMM</title>
+<style>
+:root{color-scheme:light dark}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;box-sizing:border-box;background:#F5F7F2;color:#14201A;font:17px/1.55 system-ui,"Noto Sans Bengali",sans-serif;text-align:center}
+@media(prefers-color-scheme:dark){body{background:#0D1410;color:#E6EEE8}}
+img{width:84px;height:84px;border-radius:50%}
+h1{font-size:1.4rem;margin:14px 0 6px}
+p{margin:0 0 18px;max-width:34ch;opacity:.85}
+a,button{display:inline-block;margin:4px;padding:12px 22px;border-radius:99px;border:0;font:700 1rem system-ui,sans-serif;text-decoration:none;cursor:pointer}
+button{background:#1F6B3A;color:#fff}
+a{background:#F59A23;color:#1b1200}
+</style></head><body><main>
+<img src="{% static 'images/logo.jpg' %}" alt="GMM">
+<h1>{% trans "You are offline" %}</h1>
+<p>{% trans "No internet connection. Check your network and try again. You can also call us to place an order." %}</p>
+<button type="button" onclick="location.reload()">{% trans "Try again" %}</button>
+<a href="tel:+91{{ site.support_phone|default:'9083732101' }}">{% trans "Call us" %}</a>
+</main></body></html>
