@@ -1,4 +1,4 @@
-{% extends "base.html" %}{% load i18n static %}
+{% extends "base.html" %}{% load i18n static shop_tags %}
 {% block title %}{% trans "Contact" %} | GMM Distributors{% endblock %}
 {% block head_extra %}<link rel="canonical" href="https://gmmdistributors.xyz/contact">{% endblock %}
 {% block mainclass %}pg{% endblock %}
@@ -8,8 +8,8 @@
   <h1>{% trans "Contact GMM Distributors" %}</h1>
   <p>{% trans "Questions about products, dealership or bulk orders? Call, WhatsApp or write to us. We reply as soon as we can." %}</p>
   <p style="margin-top:14px">
-    <a class="pg-btn alt" href="tel:+91{{ phone }}">{% trans "Call" %} {{ phone }}</a>
-    <a class="pg-btn" href="https://wa.me/91{{ wa }}" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="pg-btn alt" href="tel:{{ phone|tel_num }}">{% trans "Call" %} {{ phone|phone_pretty }}</a>
+    <a class="pg-btn" href="https://wa.me/{{ wa|wa_num }}" target="_blank" rel="noopener">WhatsApp</a>
   </p>
 </section>
 
@@ -18,7 +18,7 @@
     <h2>{% trans "Company details" %}</h2>
     <dl class="pg-dl">
       <dt>{% trans "Founder & Director" %}</dt><dd>Chikur Kumar Ray</dd>
-      <dt>{% trans "Phone / WhatsApp" %}</dt><dd><a href="tel:+91{{ phone }}">+91 {{ phone }}</a></dd>
+      <dt>{% trans "Phone / WhatsApp" %}</dt><dd><a href="tel:{{ phone|tel_num }}">{{ phone|phone_pretty }}</a></dd>
       <dt>{% trans "Email" %}</dt><dd><a href="mailto:{{ mail }}">{{ mail }}</a></dd>
       <dt>{% trans "Office" %}</dt><dd>Nirmala Bhawan, Fansi Bagan, Ward No. 13, Arambagh, Hooghly, West Bengal – 712601</dd>
       <dt>CIN</dt><dd>{{ site.cin|default:"U24299WB2020PTC240755" }}</dd>
@@ -26,7 +26,7 @@
   </div>
   <div class="pg-card" style="text-align:center">
     <h2>{% trans "Scan to chat on WhatsApp" %}</h2>
-    <img class="pg-qr" loading="lazy" width="180" height="180" alt="WhatsApp QR" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fwa.me%2F91{{ wa }}">
+    <img class="pg-qr" loading="lazy" width="180" height="180" alt="WhatsApp QR" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fwa.me%2F{{ wa|wa_num }}">
   </div>
 </section>
 
@@ -68,7 +68,7 @@ document.getElementById('enq').addEventListener('submit',function(e){
   var v=function(i){return document.getElementById(i).value.trim()};
   if(!v('e-name')){document.getElementById('e-name').focus();return}
   var t='Name: '+v('e-name')+'\nLocation: '+v('e-loc')+'\nType: '+v('e-type')+'\n'+v('e-msg');
-  window.open('https://wa.me/91{{ wa }}?text='+encodeURIComponent(t),'_blank');
+  window.open('https://wa.me/{{ wa|wa_num }}?text='+encodeURIComponent(t),'_blank');
 });
 </script>
 {% endwith %}

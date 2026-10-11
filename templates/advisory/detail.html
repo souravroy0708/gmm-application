@@ -1,4 +1,4 @@
-{% extends "base.html" %}{% load static %}
+{% extends "base.html" %}{% load static shop_tags %}
 {% block title %}{{ crop.name }} চাষের পরামর্শ | GMM Distributors{% endblock %}
 {% block head_extra %}{% include "advisory/_og.html" %}<script src="{% static 'js/krishi.js' %}" defer></script>{% endblock %}
 {% block mainclass %}kp{% endblock %}
@@ -16,8 +16,8 @@
     <p>{{ crop.tagline }}</p>
     <div class="kp-glass"><span>⏳ {{ crop.duration }}</span><span>📅 {{ crop.season }}</span></div>
     <div class="kp-cta">
-      {% if site.whatsapp_number %}<a class="kp-btn wa sm" href="https://wa.me/91{{ site.whatsapp_number }}?text={{ wa_text|urlencode }}" target="_blank" rel="noopener"><svg class="ic"><use href="#i-chat"/></svg>পরামর্শ নিন</a>{% endif %}
-      {% if site.support_phone %}<a class="kp-btn ghost sm" href="tel:{{ site.support_phone }}">📞 ফোন করুন</a>{% endif %}
+      {% if site.whatsapp_number %}<a class="kp-btn wa sm" href="https://wa.me/{{ site.whatsapp_number|wa_num }}?text={{ wa_text|urlencode }}" target="_blank" rel="noopener"><svg class="ic"><use href="#i-chat"/></svg>পরামর্শ নিন</a>{% endif %}
+      {% if site.support_phone %}<a class="kp-btn ghost sm" href="tel:{{ site.support_phone|tel_num }}">📞 ফোন করুন</a>{% endif %}
     </div>
   </div>
 </section>
@@ -58,7 +58,7 @@
   <h2>{{ crop.name }} চাষের জন্য সার ও কৃষি-পণ্য</h2>
   <p>GMM-এর পণ্য দেখুন, অথবা কোনটা আপনার জমির জন্য ঠিক — আমাদের জিজ্ঞাসা করুন।</p>
   <div class="kp-cta"><a class="kp-btn sun" href="{% url 'shop:products' %}">🛒 পণ্য দেখুন</a>
-  {% if site.support_phone %}<a class="kp-btn ghost" href="tel:{{ site.support_phone }}">📞 ফোন করুন</a>{% endif %}</div>
+  {% if site.support_phone %}<a class="kp-btn ghost" href="tel:{{ site.support_phone|tel_num }}">📞 ফোন করুন</a>{% endif %}</div>
 </section>
 
 <section class="kp-sec"><h2>অন্যান্য ফসল</h2>

@@ -28,7 +28,7 @@
       <p class="lead">{% trans "Soil boosters and farm inputs from GMM Distributors, delivered to your door." %}</p>
       <div class="cta">
         <a class="btn sun big" href="#products">{% trans "Shop now" %}</a>
-        {% if site.whatsapp_number %}<a class="btn ghost big" href="https://wa.me/{{ site.whatsapp_number|digits }}"><svg class="ic"><use href="#i-chat"/></svg>WhatsApp</a>{% endif %}
+        {% if site.whatsapp_number %}<a class="btn ghost big" href="https://wa.me/{{ site.whatsapp_number|wa_num }}"><svg class="ic"><use href="#i-chat"/></svg>WhatsApp</a>{% endif %}
       </div>
     </div>
     <div class="hero2-art" aria-hidden="true">
@@ -107,8 +107,8 @@
       <div class="bubbles" aria-hidden="true"><span style="--x:8%;--s:12px;--t:9s;--d:-1s"></span><span style="--x:25%;--s:20px;--t:12s;--d:-5s"></span><span style="--x:45%;--s:10px;--t:8s;--d:-3s"></span><span class="g" style="--x:62%;--s:24px;--t:14s;--d:-7s"></span><span style="--x:80%;--s:14px;--t:10s;--d:-2s"></span><span style="--x:92%;--s:18px;--t:13s;--d:-6s"></span></div>
       <div><h2>{% trans "Not sure what to choose?" %}</h2><p>{% trans "Talk to us. We are happy to help." %}</p></div>
       <div class="acts">
-        {% if site.support_phone %}<a class="btn sun" href="tel:{{ site.support_phone }}"><svg class="ic"><use href="#i-phone"/></svg>{% trans "Call us" %}</a>{% endif %}
-        {% if site.whatsapp_number %}<a class="btn wa" href="https://wa.me/{{ site.whatsapp_number|digits }}"><svg class="ic"><use href="#i-chat"/></svg>WhatsApp</a>{% endif %}
+        {% if site.support_phone %}<a class="btn sun" href="tel:{{ site.support_phone|tel_num }}"><svg class="ic"><use href="#i-phone"/></svg>{% trans "Call us" %}</a>{% endif %}
+        {% if site.whatsapp_number %}<a class="btn wa" href="https://wa.me/{{ site.whatsapp_number|wa_num }}"><svg class="ic"><use href="#i-chat"/></svg>WhatsApp</a>{% endif %}
       </div>
     </div>
   </section>

@@ -1,6 +1,8 @@
 from django import template
 from django.templatetags.static import static
 
+from apps.core.fields import normalize_phone
+
 register = template.Library()
 
 # Website photos used until a photo is uploaded in the admin (Product images).
@@ -22,11 +24,36 @@ def photo(product):
     return static(f"images/products/{name}.webp") if name else ""
 
 
+def _canon(value):
+    """Any way of typing an Indian mobile ('9083732101', '+91 90837-32101', '919083732101',
+    '09083732101') -> '+919083732101'. Unknown shapes are returned as typed."""
+    return normalize_phone(value)
+
+
+@register.filter
+def wa_num(value):
+    """For wa.me links: digits only, country code included exactly once -> '919083732101'."""
+    return "".join(c for c in _canon(value) if c.isdigit())
+
+
+@register.filter
+def tel_num(value):
+    """For tel: links -> '+919083732101'."""
+    c = _canon(value)
+    return "+" + "".join(x for x in c if x.isdigit()) if c else ""
+
+
+@register.filter
+def phone_pretty(value):
+    """For display -> '+91 90837 32101'."""
+    c = _canon(value)
+    return f"{c[:3]} {c[3:8]} {c[8:]}" if len(c) == 13 and c.startswith("+91") else c
+
+
 @register.filter
 def digits(value):
-    """'+91 90837-32101' -> '919083732101' (for wa.me links)."""
-    d = "".join(c for c in str(value or "") if c.isdigit())
-    return d if len(d) > 10 else f"91{d}" if d else ""
+    """Kept for backwards compatibility; same as wa_num."""
+    return wa_num(value)
 
 
 @register.filter

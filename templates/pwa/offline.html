@@ -1,4 +1,4 @@
-{% load i18n static %}<!doctype html>
+{% load i18n static shop_tags %}<!doctype html>
 <html lang="{{ LANGUAGE_CODE }}"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{% trans "You are offline" %} | GMM</title>
@@ -16,5 +16,5 @@ a{background:#F59A23;color:#1b1200}
 <h1>{% trans "You are offline" %}</h1>
 <p>{% trans "No internet connection. Check your network and try again. You can also call us to place an order." %}</p>
 <button type="button" onclick="location.reload()">{% trans "Try again" %}</button>
-<a href="tel:+91{{ site.support_phone|default:'9083732101' }}">{% trans "Call us" %}</a>
+<a href="tel:{{ site.support_phone|default:'9083732101'|tel_num }}">{% trans "Call us" %}</a>
 </main></body></html>

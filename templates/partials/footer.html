@@ -1,10 +1,10 @@
-{% load i18n %}
+{% load i18n shop_tags %}
 <footer class="gf">
   <div class="container gf-grid">
     <div class="gf-about">
       <strong class="gf-name">GMM Distributors Pvt. Ltd.</strong>
       <p>{% trans "Organic farming, healthy living. Agricultural products supplier and organic manure distributor based in Arambagh, Hooghly, West Bengal." %}</p>
-      {% if site.whatsapp_number %}<a class="gf-wa" href="https://wa.me/91{{ site.whatsapp_number }}" target="_blank" rel="noopener">{% trans "Chat on WhatsApp" %}</a>{% endif %}
+      {% if site.whatsapp_number %}<a class="gf-wa" href="https://wa.me/{{ site.whatsapp_number|wa_num }}" target="_blank" rel="noopener">{% trans "Chat on WhatsApp" %}</a>{% endif %}
     </div>
     <nav class="gf-col" aria-label="{% trans 'Company' %}">
       <h3>{% trans "Company" %}</h3>
@@ -22,7 +22,7 @@
     </div>
     <div class="gf-col">
       <h3>{% trans "Reach us" %}</h3>
-      <a href="tel:+91{{ site.support_phone|default:'9083732101' }}">{{ site.support_phone|default:"9083732101" }}</a>
+      <a href="tel:{{ site.support_phone|default:'9083732101'|tel_num }}">{{ site.support_phone|default:"9083732101"|phone_pretty }}</a>
       <a href="mailto:{{ site.support_email|default:'ray.chikur@gmail.com' }}">{{ site.support_email|default:"ray.chikur@gmail.com" }}</a>
       <a href="https://gmmdistributors.xyz" target="_blank" rel="noopener">gmmdistributors.xyz</a>
       <a href="https://gmmdistributors.xyz/leadership#visiting-card">{% trans "Digital visiting card" %}</a>

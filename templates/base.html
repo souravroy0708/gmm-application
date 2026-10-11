@@ -1,4 +1,4 @@
-{% load static i18n %}<!doctype html>
+{% load static i18n shop_tags %}<!doctype html>
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
   <meta charset="utf-8">
@@ -59,7 +59,7 @@
       {% if LANGUAGE_CODE == "bn" %}<button class="langbtn" name="language" value="en" type="submit">English</button>
       {% else %}<button class="langbtn" name="language" value="bn" type="submit">বাংলা</button>{% endif %}
     </form>
-    {% if site.support_phone %}<a class="callbtn" href="tel:{{ site.support_phone }}"><svg class="ic"><use href="#i-phone"/></svg>{% trans "Call" %}</a>{% endif %}
+    {% if site.support_phone %}<a class="callbtn" href="tel:{{ site.support_phone|tel_num }}"><svg class="ic"><use href="#i-phone"/></svg>{% trans "Call" %}</a>{% endif %}
   </div>
 </header>
 

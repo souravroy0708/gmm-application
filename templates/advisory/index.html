@@ -1,4 +1,4 @@
-{% extends "base.html" %}{% load static %}
+{% extends "base.html" %}{% load static shop_tags %}
 {% block title %}কৃষি পরামর্শ | GMM Distributors{% endblock %}
 {% block head_extra %}{% include "advisory/_og.html" %}<script src="{% static 'js/krishi.js' %}" defer></script>{% endblock %}
 {% block mainclass %}kp{% endblock %}
@@ -10,7 +10,7 @@
   <p>ধান, আলু, পাট, সরিষা ও সবজি: কোন মাসে কী করবেন, কোন জাত বাছবেন, সার ও রোগ-পোকায় কী করণীয় — সব এক জায়গায়।</p>
   <div class="kp-cta">
     <a class="kp-btn sun" href="#crops">ফসল বেছে নিন</a>
-    {% if site.whatsapp_number %}<a class="kp-btn wa" href="https://wa.me/91{{ site.whatsapp_number }}?text={{ 'নমস্কার, আমি চাষ নিয়ে পরামর্শ চাই।'|urlencode }}" target="_blank" rel="noopener"><svg class="ic"><use href="#i-chat"/></svg>সরাসরি পরামর্শ</a>{% endif %}
+    {% if site.whatsapp_number %}<a class="kp-btn wa" href="https://wa.me/{{ site.whatsapp_number|wa_num }}?text={{ 'নমস্কার, আমি চাষ নিয়ে পরামর্শ চাই।'|urlencode }}" target="_blank" rel="noopener"><svg class="ic"><use href="#i-chat"/></svg>সরাসরি পরামর্শ</a>{% endif %}
     <a class="kp-btn ghost" href="#share">শেয়ার করুন</a>
   </div>
 </section>
@@ -83,7 +83,7 @@
   <h2>পরামর্শ বা পণ্য নিয়ে কথা বলতে চান?</h2>
   <p>আরামবাগ, হুগলি থেকে আমরা আপনার পাশে আছি।</p>
   <div class="kp-cta">
-    {% if site.support_phone %}<a class="kp-btn sun" href="tel:{{ site.support_phone }}">📞 ফোন করুন</a>{% endif %}
+    {% if site.support_phone %}<a class="kp-btn sun" href="tel:{{ site.support_phone|tel_num }}">📞 ফোন করুন</a>{% endif %}
     <a class="kp-btn ghost" href="{% url 'shop:products' %}">🛒 পণ্য দেখুন</a>
   </div>
 </section>
