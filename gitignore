@@ -28,7 +28,7 @@ db.sqlite3-journal
 *.dump
 
 # ---- User uploads (payment proofs, invoices, product uploads) ----
-media/*
+
 !media/.gitkeep
 !media/products/
 media/products/bkp-*
